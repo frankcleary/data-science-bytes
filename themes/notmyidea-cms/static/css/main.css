@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	line-height: 1.1;
 	margin-bottom: .8em;
-    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-family: arial, serif;
 }
 
 h3, h4, h5, h6 { margin-top: .8em; }
@@ -52,12 +52,12 @@ hr { border: 2px solid #EEEEEE; }
 a {outline: 0;}
 a img {border: 0px; text-decoration: none;}
 a:link, a:visited {
-	color: #C74350;
+	color: steelblue;
 	padding: 0 1px;
 	text-decoration: underline;
 }
 a:hover, a:active, a.active, .active>a {
-	background-color: #C74350;
+	background-color: steelblue;
 	color: white;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px #333;
@@ -167,7 +167,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	}
 	#banner h1 a:hover, #banner h1 a:active {
 		background: none;
-		color: #C74350;
+		color: steelblue;
 		text-shadow: none;
 	}
 	
@@ -200,7 +200,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	}
 	#banner nav a:hover, #banner nav a:active,
 	#banner nav .active a:link, #banner nav .active a:visited {
-		background: #C74451;
+		background: steelblue;
 		color: #fff;
 		text-shadow: none !important;
 	}
@@ -252,7 +252,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 #sidebar li {border-bottom: 1px solid #fff;}
 
 #sidebar h2 {
-	color: #C74350;
+	color: steelblue;
 	font-size: 1.429em;
 	margin-top: .75em;
 	margin-bottom: .25em;
