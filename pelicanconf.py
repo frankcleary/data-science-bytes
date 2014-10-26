@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Frank Cleary'
 SITENAME = u'Data Science Bytes'
 SITEURL = '' # 'http://www.datasciencebytes.com'
+THEME = 'themes/notmyidea-cms'
 
 PATH = 'content'
 
@@ -12,8 +13,11 @@ TIMEZONE = 'America/Los_Angeles'
 
 DEFAULT_LANG = u'en'
 
-ARTICLE_URL = 'posts/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
-ARTICLE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
+# URL/Save as schemes
+ARTICLE_URL = 'bytes/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
+ARTICLE_SAVE_AS = 'bytes/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = '{slug}/index.html'
 
 
 # Feed generation is usually not desired when developing

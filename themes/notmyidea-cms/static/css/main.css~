@@ -146,7 +146,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 *****************/
 #banner {
     clear: both;
-	margin: .5em auto 0 auto;
+	margin: 0 auto 0 auto;
 	padding: 2.5em 0 0 0;
 }
 
@@ -154,13 +154,13 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	#banner h1 {
         font-size: 3.571em; 
         line-height: 0;
-	margin: 0 auto 0 auto;
+	    margin: 0 auto 0 auto;
     }
 	#banner h1 a:link, #banner h1 a:visited {
 		color: #000305;
 		display: block;
 		font-weight: bold;
-		margin: 0 auto .8em auto;
+		margin: 0 auto .6em auto;
 		text-decoration: none;
 		text-align: center;
 	}
