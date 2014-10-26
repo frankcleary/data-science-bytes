@@ -18,6 +18,10 @@ ARTICLE_URL = 'bytes/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'bytes/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
+YEAR_ARCHIVE_URL = 'bytes/{date:%Y}/'
+YEAR_ARCHIVE_SAVE_AS = 'bytes/{date:%Y}/index.html'
+MONTH_ARCHIVE_URL = 'bytes/{date:%Y}/{date:%m}/'
+MONTH_ARCHIVE_SAVE_AS = 'bytes/{date:%Y}/{date:%m}/index.html'
 
 
 # Feed generation is usually not desired when developing
@@ -26,14 +30,11 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (('Recommended Books', 'TODO'),
+         ('Author\'s Site', 'http://www.frankcleary.com/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'TODO'),)
 
 DEFAULT_PAGINATION = 20
 

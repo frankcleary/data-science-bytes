@@ -160,9 +160,9 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 		color: #000305;
 		display: block;
 		font-weight: bold;
-		margin: 0 auto .8em auto;
+		margin: 0 auto .8em 7%;
 		text-decoration: none;
-		text-align: center;
+		text-align: left;
 	}
 	#banner h1 a:hover, #banner h1 a:active {
 		background: none;
@@ -178,9 +178,9 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 		font-size: 1.143em;
 		height: 40px;
 		line-height: 30px;
-		margin: 0 auto 2em auto;
+		margin: 0 auto 1em 7%;
 		padding: 0;
-		width: 90%;
+		width: 85%;
 		
 		border-radius: 5px;
 		-moz-border-radius: 5px;
@@ -223,7 +223,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
     float: left;
-    margin: 1em 10px 2em 7%;
+    margin: 1em 10px 2em 0;
 	background: #fff;
 	overflow: hidden;
 	padding: 20px 20px;
@@ -235,8 +235,8 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	Extras
 *****************/
 #sidebar {
-    float: right; 
-    margin: 1em 7% 2em 10px;
+    float: left; 
+    margin: 1em 2em 2em 7%;
 	background: #fff;
 	overflow: hidden;
 	padding: 20px 20px;
@@ -254,26 +254,17 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	color: steelblue;
 	font-size: 1.429em;
 	margin-top: .75em;
-	margin-bottom: .25em;
+	margin-bottom: .5em;
 	padding: 0 3px;
 }
 
 #sidebar a:link, #sidebar a {
 	color: #444;
 	display: block;
-	border-bottom: 1px solid #F4E3E3;
 	text-decoration: none;
 	padding: .3em .25em;
 }
 #sidebar li.active a {color: white;}
-
-#sidebar li:last-child,
-#sidebar li:last-child a {border: 0}
-
-#sidebar .blogroll li:nth-last-child(2),
-#sidebar .blogroll li:nth-last-child(3),
-#sidebar .blogroll li:nth-last-child(2) a,
-#sidebar .blogroll li:nth-last-child(3) a {border: 0;}
 
 #sidebar a:hover, #sidebar a:active {color: #fff;}
 
