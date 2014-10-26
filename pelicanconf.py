@@ -3,14 +3,18 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Frank Cleary'
-SITENAME = u'DataHub'
-SITEURL = ''
+SITENAME = u'Data Science Bytes'
+SITEURL = '' # 'http://www.datasciencebytes.com'
 
 PATH = 'content'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'America/Los_Angeles'
 
 DEFAULT_LANG = u'en'
+
+ARTICLE_URL = 'posts/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
+ARTICLE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
+
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
