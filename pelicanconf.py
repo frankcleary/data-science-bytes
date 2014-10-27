@@ -34,7 +34,7 @@ LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
          ('Author\'s Site', 'http://www.frankcleary.com/'),)
 
 # Social widget
-SOCIAL = (('Twitter', 'TODO'),)
+SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)
 
 DEFAULT_PAGINATION = 20
 
