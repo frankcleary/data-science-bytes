@@ -38,8 +38,11 @@ SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)
 
 DEFAULT_PAGINATION = 20
 
+# Uncomment following line if you want document-relative URLs when developing
+RELATIVE_URLS = False
+
 # Twitter button
 TWITTER_USERNAME = 'DSBytes'
 
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+# Google Analytics
+GOOGLE_ANALYTICS = 'UA-47982219-2'
