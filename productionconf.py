@@ -43,5 +43,7 @@ RELATIVE_URLS = False
 # Twitter button
 TWITTER_USERNAME = 'DSBytes'
 
+DISQUS_SITENAME = 'datasciencebytes' 
+
 # Google Analytics
 GOOGLE_ANALYTICS = 'UA-47982219-2'

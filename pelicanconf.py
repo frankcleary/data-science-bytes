@@ -30,8 +30,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
-         ('Author\'s Site', 'http://www.frankcleary.com/'),)
+LINKS = (('Recommended Books', SITEURL + '/recommended-books'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)
@@ -40,6 +39,8 @@ DEFAULT_PAGINATION = 20
 
 # Twitter button
 TWITTER_USERNAME = 'DSBytes'
+
+DISQUS_SITENAME = 'datasciencebytes' 
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
