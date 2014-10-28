@@ -10,8 +10,8 @@ env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
 # Remote server configuration
-production = 'root@localhost:22'
-dest_path = '/var/www'
+production = 'fcleary_dsbytes@ssh.phx.nearlyfreespeech.net'
+dest_path = '/home/public'
 
 # Rackspace Cloud Files configuration settings
 env.cloudfiles_username = 'my_rackspace_username'
@@ -63,7 +63,7 @@ def cf_upload():
 
 @hosts(production)
 def publish():
-    local('pelican -s publishconf.py')
+    local('pelican -s productionconf.py')
     project.rsync_project(
         remote_dir=dest_path,
         exclude=".DS_Store",

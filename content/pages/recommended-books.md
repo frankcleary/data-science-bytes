@@ -1,8 +1,6 @@
 Title: Recommended Books
 
-Note: Clicking on these links helps support Data Science Bytes through Amazon's
-associates program. I make every effort to provide an honest assessment of these
-books.
+Note: Purchasing books from these links helps support Data Science Bytes.
 
 ## Data Science and Machine Learning
 

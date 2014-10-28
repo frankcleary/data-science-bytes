@@ -30,8 +30,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
-         ('Author\'s Site', 'http://www.frankcleary.com/'),)
+LINKS = (('Recommended Books', SITEURL + '/recommended-books'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)
