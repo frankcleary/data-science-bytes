@@ -30,7 +30,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Recommended Books', SITEURL + '/recommended-books'),)
+LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
          ('Recommended Videos', SITEURL + '/recommended-videos'),)
 
 # Social widget
