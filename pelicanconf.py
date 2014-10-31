@@ -40,7 +40,5 @@ DEFAULT_PAGINATION = 20
 # Twitter button
 TWITTER_USERNAME = 'DSBytes'
 
-DISQUS_SITENAME = 'datasciencebytes' 
-
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
