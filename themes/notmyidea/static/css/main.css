@@ -50,12 +50,12 @@ hr { border: 2px solid #EEEEEE; }
 a {outline: 0;}
 a img {border: 0px; text-decoration: none;}
 a:link, a:visited {
-	color: #C74350;
+	color: steelblue;
 	padding: 0 1px;
 	text-decoration: underline;
 }
 a:hover, a:active {
-	background-color: #C74350;
+	background-color: steelblue;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px #333;
@@ -169,7 +169,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	}
 	#banner h1 a:hover, #banner h1 a:active {
 		background: none;
-		color: #C74350;
+		color: steelblue;
 		text-shadow: none;
 	}
 	
@@ -203,7 +203,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	}
 	#banner nav a:hover, #banner nav a:active,
 	#banner nav .active a:link, #banner nav .active a:visited {
-		background: #C74451;
+		background: steelblue;
 		color: #fff;
 		text-shadow: none !important;
 	}
@@ -241,7 +241,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 }
 #featured figure img {display: block; float: right;}
 
-#featured h2 {color: #C74451; font-size: 1.714em; margin-bottom: 0.333em;}
+#featured h2 {color: steelblue; font-size: 1.714em; margin-bottom: 0.333em;}
 #featured h3 {font-size: 1.429em; margin-bottom: .5em;}
 
 #featured h3 a:link, #featured h3 a:visited {color: #000305; text-decoration: none;}
@@ -270,7 +270,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 #extras ul {list-style: none; margin: 0;}
 #extras li {border-bottom: 1px solid #fff;}
 #extras h2 {
-	color: #C74350;
+	color: steelblue;
 	font-size: 1.429em;
 	margin-bottom: .25em;
 	padding: 0 3px;
@@ -352,7 +352,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 }
 
 #about .primary {float: left; width: 165px;}
-#about .primary strong {color: #C64350; display: block; font-size: 1.286em;}
+#about .primary strong {color: steelblue; display: block; font-size: 1.286em;}
 #about .photo {float: left; margin: 5px 20px;}
 
 #about .url:link, #about .url:visited {text-decoration: none;}
@@ -412,7 +412,7 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	}
 	
 	#about-author strong {
-		color: #C64350;
+		color: steelblue;
 		clear: both;
 		display: block;
 		font-size: 1.429em;
