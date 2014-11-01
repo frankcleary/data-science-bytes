@@ -28,12 +28,16 @@
                 {% endif %}
                 {% if DISPLAY_PAGES_ON_MENU -%}
                 {% for pg in PAGES %}
+		{% if pg.title != 'About' %}
                     <li{% if pg == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ pg.url }}">{{ pg.title }}</a></li>
+		{% endif %}
                 {% endfor %}
                 {% endif %}
                 {% for title, link in MENUITEMS %}
                     <li><a href="{{ link }}">{{ title }}</a></li>
                 {% endfor %}
+                <li><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">Archives</a></li>
+                <li><a href="{{ SITEURL }}/about">About</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
         {% block content %}
