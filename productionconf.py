@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Frank Cleary'
 SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
-THEME = 'themes/notmyidea-cms'
+THEME = 'themes/notmyidea'
 
 PATH = 'content'
 
