@@ -16,7 +16,7 @@
 body {
     background: #F5F4EF;
     color: #000305;
-    font-size: 87.5%; /* Base font size: 14px */
+    font-size: 95%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     line-height: 1.429;
     margin: 0;
@@ -228,7 +228,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	overflow: hidden;
 	padding: 20px 20px;
 	min-width: 600px;
-	width: 60%;
+	width: 50%;
 }
 
 /*
