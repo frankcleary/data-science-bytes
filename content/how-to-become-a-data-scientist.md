@@ -21,24 +21,24 @@ It was at this time that I decided data science was where I would focus my futur
 * Have a personal website (e.g. [frankcleary.com](http://www.frankcleary.com)).
 I learned a lot about the internet and using remote linux machines by
 building my personal website. It also helped give me motivation
-to work on other projects because I had a place to share them. The site started out as a personal learning project but now gets a steadily increasing amount of traffic from web searches, mostly landing on pages where I've posted tutorials. It's still only 10-20 users per day, but given that I only got 10-20 users total in the first 6 months I had the site up that's not bad.
+to work on other projects because I had a place to share them. My site now gets 10-20 users per day from searches, mostly landing on pages where I've posted tutorials.
 
-* Do data related projects in your spare time (and ideally post them on your website!). I've worked on a variety of fun personal side projects ranging from interactive D3.js interactive graphs to tutorials on matrix decomposition that made be a better programmer and a better data scientist. Having these projects on your website also gives you a portfolio that will make you stand out among other aspiring data scientists, it shows commitment to learning and (hopefully) skill.
+* Do data related projects in your spare time (and then post them on your website!). I've worked on a variety of fun side projects ranging from [interactive D3.js graphs](http://www.frankcleary.com/mpg) to [tutorials on matrix decomposition](http://www.frankcleary.com/svd) that made be a better programmer and a better data scientist. Having these projects on your website also gives you a portfolio that will help you stand out by showing commitment to learning and (hopefully) skill.
 
 ## Study books and videos to learn more about computer science and data science
 
 * Check out my [recommended books]({filename}/pages/recommended-books.md) page for the best books I've read.
 
-* One of things I think is great about the open source software and data science communities is the extent to which talks from conferences and meetups are available for free online. Besides searching directly on [youtube](http://www.youtube.com), other sites like [pyvideo.org](http://www.pyvideo.org) have great video libraries. Take a look at my [recommened videos]({filename}/pages/recommended-videos.md) for some of my favorites.
+* Many great talks from conferences and meetups are available for free online. Besides searching directly on [youtube](http://www.youtube.com), other sites like [pyvideo.org](http://www.pyvideo.org) have great video libraries. Take a look at my [recommened videos]({filename}/pages/recommended-videos.md) for some of my favorites.
 
 * Take a free online class. I took [Introduction to Databases](https://class.stanford.edu/courses/Home/Databases/Engineering/about) with Prof. Jennifer Widom and [Machine Learning](https://www.coursera.org/course/ml) with Prof. Andrew Ng. Both were engaging and cover essential knowledge for a data scientist that comes in handy when doing data science and when interviewing for data scientist jobs. Introduction to Databases was more polished and more rigorous.
 
 ## Do an internship
 
-* If you're still in school a summer internship is a great way to get first hand experience doing data science in industry. I did one the last summer before I graduated and it was a very valuable experience. Look into career fairs on campus (how I found mine), job posting websites and company websites directly for opportunities.<p></p>
+* A summer internship is a great way to get first hand experience doing data science in industry. I did one the summer before I graduated and it was a very valuable. Look into career fairs on campus (how I found mine), job posting websites and company websites directly for opportunities.<p></p>
 
 ## Learn to use [Git](http://git-scm.com) for version control
 
-* [Git](http://git-scm.com) is great when writing software solo, and essential when working on team (which you will be in a job). The more you learn about git the more efficient your code development process will be.
+* [Git](http://git-scm.com) is great when writing software solo, and essential when working on team (which you will be in a job). The more you learn about Git the more efficient your code development process will be.
 
 * Create an account on [GitHub](https://github.com) and post your portfolio projects to it. Link to the account on your resume to make sure your projects are visible.
