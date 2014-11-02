@@ -1,6 +1,6 @@
-Title: Recommended Books
+Title: Recommended Books for Data Scientists
 
-Note: Purchasing books from these links helps support Data Science Bytes.
+These are the best books that have helped me be a better data scientist. Purchasing books from these links helps support Data Science Bytes.
 
 ## Data Science and Machine Learning
 
