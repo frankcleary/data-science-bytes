@@ -8,6 +8,10 @@ SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
 PATH = 'content'
+STATIC_PATHS = ['resources/favicon.png']
+EXTRA_PATH_METADATA = {
+    'resources/favicon.png': {'path': 'favicon.ico'},
+}
 
 TIMEZONE = 'America/Los_Angeles'
 
@@ -22,7 +26,6 @@ YEAR_ARCHIVE_URL = 'bytes/{date:%Y}/'
 YEAR_ARCHIVE_SAVE_AS = 'bytes/{date:%Y}/index.html'
 MONTH_ARCHIVE_URL = 'bytes/{date:%Y}/{date:%m}/'
 MONTH_ARCHIVE_SAVE_AS = 'bytes/{date:%Y}/{date:%m}/index.html'
-
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -43,3 +46,4 @@ TWITTER_USERNAME = 'DSBytes'
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
