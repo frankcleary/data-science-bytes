@@ -1,4 +1,5 @@
-Title: Recommended Books for Data Scientists
+Title: Recommended Books
+Date: 2013-10-29
 
 These are the best books that have helped me be a better data scientist. Purchasing books from these links helps support Data Science Bytes.
 

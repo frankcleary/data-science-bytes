@@ -1,4 +1,4 @@
-Title: Recommended Videos for Data Scientists
+Title: Recommended Videos
 Date: 2013-10-31
 
 Here are the best data science and python related videos that I've found.
