@@ -8,9 +8,9 @@ SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
 PATH = 'content'
-STATIC_PATHS = ['resources/favicon.png']
+STATIC_PATHS = ['extra/favicon2.png']
 EXTRA_PATH_METADATA = {
-    'resources/favicon.png': {'path': 'favicon.ico'},
+    'extra/favicon2.png': {'path': 'favicon.ico'},
 }
 
 TIMEZONE = 'America/Los_Angeles'
