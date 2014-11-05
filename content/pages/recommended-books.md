@@ -20,6 +20,9 @@ improve performance. Unfortunately the code available online as a supplement for
 this book doesn't match well with the code in the book and doesn't always work
 without modification.
 
+* <a href="http://www.amazon.com/gp/product/0321356683/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321356683&linkCode=as2&tag=datscibyt-20&linkId=IGYNPVP4AN763SDE">Effective Java</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=datscibyt-20&l=as2&o=1&a=0321356683" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+  Effective Java is a masterpiece and a classic in the field of computer science. Even if you don't use java you'll write better code after reading this book, which makes your data science better.
+
 * <a href="http://www.amazon.com/gp/product/1449370780/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449370780&linkCode=as2&tag=datscibyt-20&linkId=XUSR7V5OXE4MADL4">Think Bayes</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=datscibyt-20&l=as2&o=1&a=1449370780" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   A good introduction to the Bayesian thinking and methods using python code.
 I'd recommend this book to any scientist. I also consider it a good primer on
