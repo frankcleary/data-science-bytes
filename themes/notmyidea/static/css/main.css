@@ -103,6 +103,11 @@ dd {margin-left: 1.5em;}
 
 pre{background-color:  rgb(238, 238, 238); padding: 10px; margin: 10px; overflow: auto;}
 
+code{
+background-color: rgb(238, 238, 238);
+padding: 1px 3px;
+}
+
 /* Quotes */
 blockquote {
     margin: 20px;
