@@ -1,6 +1,7 @@
 Title: Filter common words from documents
 Category: Tips
 Date: 11-4-2014
+Tags: Python, nltk, Data
 
 Often when working with text documents it is useful to filter out words that occur frequently in all documents. These words, called stop words, don't give any special hint about the document's content. The [nltk (Natural Language Toolkit) library](http://www.nltk.org/index.html) for python includes a list of stop words for several languages. For example:
 
