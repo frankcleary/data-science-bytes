@@ -35,7 +35,7 @@ There is a much faster means to this end: the `set` data structure! Consider the
         else:
             print '{} is NOT a word'.format(word)
 
-On my machine this now takes 645 *nano*seconds, roughly 16,000 times faster! The lesson is clear: if you want to test for membership in a group, use a `set`, not a `list` (or other array like structure).
+On my machine this now takes 645 *nano*seconds, roughly **16,000 times faster!** The lesson is clear: if you want to test for membership in a group, use a `set`, not a `list` (or other array like structure).
 
 ## Explanation
 
