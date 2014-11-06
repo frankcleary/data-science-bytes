@@ -7,7 +7,7 @@ A common need in data science is to test if a some group of data contains a give
 
 ## The slow way
 
-If the elements of the group exist in a `list` named `group` in python, it's easy enough to test membership with `if x in group`. Here's a performance test, where `word_list` is a list of all English words.
+If the elements of the group exist in a `list` named `group` in python, it's easy enough to test membership with `if x in group`. Here's a performance test, where `word_list` is a list of all English words ([get yours here!]({filename}nltk-wordlist-tip.md)).
 
     :::python
     document = ['the', 'data', 'noob', 'element', 'starcraft']
