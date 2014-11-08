@@ -5,9 +5,16 @@ from __future__ import unicode_literals
 AUTHOR = u'Frank Cleary'
 SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
-THEME = 'themes/notmyidea-cms'
+THEME = 'themes/notmyidea'
 
 PATH = 'content'
+STATIC_PATHS = ['extra/favicon2.png',
+                'extra/images',
+                'extra/ipynb',
+                'extra/timeseries.txt']
+EXTRA_PATH_METADATA = {
+    'extra/favicon2.png': {'path': 'favicon.ico'},
+}
 
 TIMEZONE = 'America/Los_Angeles'
 
@@ -30,7 +37,8 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (('Recommended Books', SITEURL + '/recommended-books'),)
+LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
+         ('Recommended Videos', SITEURL + '/recommended-videos'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)

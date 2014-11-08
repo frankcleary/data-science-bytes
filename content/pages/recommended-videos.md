@@ -1,7 +1,7 @@
 Title: Recommended Videos
 Date: 2013-10-31
 
-Here are some of my favorite data science and python related videos available online.
+Here are the best data science and python related videos that I've found.
 
 * [The Mighty Dictionary](http://pyvideo.org/video/276/the-mighty-dictionary-55), Brandon Rhodes
 
