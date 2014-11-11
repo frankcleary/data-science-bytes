@@ -45,7 +45,7 @@ Loading and plotting the data in pandas gives this result:
     
 ![Missing date graph]({filename}extra/images/missingdateplot.png)
 
-Notice that even though Nov. 3rd and Nov. 5th are a day apart those two dates are not separated by any extra distance on the graph. This is because pandas understood the data in the date column as strings, not as dates. This is confirmed by the df.index command above showing the index is made up of strings. Luckily it's easy to have pandas parse dates from this column by adding the `parse_dates=True` arguement to `read_csv()`:
+Notice that even though Nov. 3rd and Nov. 5th are a day apart those two dates are not separated by any extra distance on the graph. This is because pandas understood the data in the date column as strings, not as dates. This is confirmed by the df.index command above showing the index is made up of strings. Luckily it's easy to have pandas parse dates from this column by adding the `parse_dates=True` parameter to `read_csv()`:
 
     :::python
     In [7]: df = pd.read_csv('timeseries.txt', index_col=0, parse_dates=True)
