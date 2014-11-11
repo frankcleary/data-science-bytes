@@ -63,7 +63,7 @@ This sed command finds the lines containing "Tags:" and some other characters, a
 We don't want to replace the line with new text, we want to replace it with the old text in lower case (expect for the initial "Tag:" part). In a sed commend "\0" means "what was matched" and \L means "make lower case." Combining these we can lowercase the entire line.
 
     :::shell
-    sed -r 's/^Tags:.+/\L\0/g' tag-example1.txt 
+    sed -r "s/^Tags:.+/\L\0/g" tag-example1.txt 
 
     # output:
     # Title: Tag example 1
@@ -86,3 +86,4 @@ The problem with the above command is that is lower cases the entire line, inclu
 
 ### Developing the command step 4: Feeding sed a list of files
 
+SHOW GIT DIFF TO CONFIRM RESULTS
