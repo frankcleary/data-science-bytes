@@ -40,7 +40,7 @@ TRANSLATION_FEED_ATOM = None
 LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
          ('Recommended Videos', SITEURL + '/recommended-videos'),
          ('Transitioning to Data Science', SITEURL + 
-          '/bytes/2014/11/01/how-to-transition-from-phd-student-to-data-scientist/'),);)
+          '/bytes/2014/11/01/how-to-transition-from-phd-student-to-data-scientist/'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/DSBytes'),)
