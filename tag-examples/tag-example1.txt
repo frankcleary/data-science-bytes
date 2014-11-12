@@ -1,4 +1,4 @@
 Title: Tag example 1
-Tags: Tag1, Tag2
+Tags: tag1, tag2
 
 Content

@@ -7,13 +7,20 @@ Data science, I'm sorry to say, often involves cleaning up input data into a usa
 
 For the purposes of this tutorial we have a directory of files that among other lines have lines of the form: Tags: Tag1, Tag2, ... (zero or more Tag labels). Our goal is to convert the tag labels to lowercase (Tag1 -> tag1), but leave the rest of the file unchanged. You can download the example directory containing the files HERE LINK.
 
+## The answer
+
+    :::shell
+    git grep -lz "^Tags:" | xargs -0 sed -i -r "s/(^Tags:)(.+)/\1\L\2/g"
+
+## Explanation
+
 First we want to find all the files that contain the line we want to change. grep can do this, by searching all the files in the directory for lines that start with "Tags:"
 
     :::shell
     # -l : print only the file name
     # '^Tags:' : look for the string Tags: at the beginning of a line
     # *	: search all the files in the current directory
-    grep -l "^Tags:" *
+    $ grep -l "^Tags:" *
 
     # output:
     # tag-example1.txt
@@ -28,7 +35,7 @@ Now we need to write a sed command to do the text manipulation to these files. T
     # s/ : do substitution
     # old/new : replace any occurances of "old" with "new"
     # /g : replace all found matches on the line, instead of only the first
-    sed "s/old/new/g" filename
+    $ sed "s/old/new/g" filename
 
 This command will not modify the file, it outputs the result to stdout (prints it to screen). Our goal is lower case everything after "Tags:", we'll go about constructing this command in steps. 
 
@@ -39,7 +46,7 @@ This sed command finds the lines containing "Tags:" and some other characters, a
 
     :::shell
     # the original file:
-    cat tag-example1.txt
+    $ cat tag-example1.txt
 
     # output:
     # Title: Tag example 1
@@ -50,7 +57,7 @@ This sed command finds the lines containing "Tags:" and some other characters, a
     # -r : use regular expressions
     # ^Tags:.+ : Search for "Tags" at the beginning of a line (^)
     #   followed by one or more other characters (.+).
-    sed -r "s/^Tags:.+/changed/g" tag-example1.txt
+    $ sed -r "s/^Tags:.+/changed/g" tag-example1.txt
     
     # output:
     # Title: Tag example 1
@@ -63,7 +70,7 @@ This sed command finds the lines containing "Tags:" and some other characters, a
 We don't want to replace the line with new text, we want to replace it with the old text in lower case (expect for the initial "Tag:" part). In a sed commend "\0" means "what was matched" and \L means "make lower case." Combining these we can lowercase the entire line.
 
     :::shell
-    sed -r "s/^Tags:.+/\L\0/g" tag-example1.txt 
+    $ sed -r "s/^Tags:.+/\L\0/g" tag-example1.txt 
 
     # output:
     # Title: Tag example 1
@@ -76,7 +83,7 @@ We don't want to replace the line with new text, we want to replace it with the 
 The problem with the above command is that is lower cases the entire line, including the initial "Tags:" part. To solve this problem we can enclose parts of our string to replace in parenthesis and access the first enclosed part as \1, the second as \2, ... in our replacement string. To lower case just the part after "Tags:":
 
     :::shell
-    sed -r "s/(^Tags:)(.+)/\1\L\2/g" tag-example1.txt 
+    $ sed -r "s/(^Tags:)(.+)/\1\L\2/g" tag-example1.txt 
 
     # output:
     # Title: Tag example 1
@@ -84,6 +91,62 @@ The problem with the above command is that is lower cases the entire line, inclu
     # 
     # Content
 
-### Developing the command step 4: Feeding sed a list of files
+### Developing the command step 4: Finding the files to change
 
-SHOW GIT DIFF TO CONFIRM RESULTS
+Now its time to replace the text of the actual files with the `-i` flag (`-i ''` on Mac OSX). This operation could be dangerous if the files are not under version control, so we'll use git to find and change only files in the git repo.
+
+    :::shell
+    # outputs the file name and the matching line
+    $ git grep "^Tags:"
+
+    # outputs just the file names
+    $ git grep -l "^Tags:"
+
+    # outputs the file names separated by a null character
+    $ git grep -lz "^Tags:"
+
+### Developing the command step 5: The complete command
+
+We can use the `xargs` tool to tell `sed` to act on the list of files we found in step 4.
+
+    :::shell
+    # outputs the files to be changed
+    $ git grep -lz "^Tags:" | xargs -0 echo
+
+    # changes the files:
+    $ git grep -lz "^Tags:" | xargs -0 sed -i -r "s/(^Tags:)(.+)/\1\L\2/g"
+
+### Developing the command step 6: Inspect the results with `git diff`
+
+We can confirm that we got the correct outcome with `git diff`
+
+    :::shell
+    $ git diff
+    diff --git a/tag-example1.txt b/tag-example1.txt
+    index 589bbdf..7d57a7d 100644
+    --- a/tag-example1.txt
+    +++ b/tag-example1.txt
+    @@ -1,4 +1,4 @@
+     Title: Tag example 1
+    -Tags: Tag1, Tag2
+    +Tags: tag1, tag2
+     
+     Content
+    diff --git a/tag-example2.txt b/tag-example2.txt
+    index addcd3b..d271212 100644
+    --- a/tag-example2.txt
+    +++ b/tag-example2.txt
+    @@ -1,4 +1,4 @@
+     Title: Tag example 2
+    -Tags: Tag1
+    +Tags: tag1
+     
+     Content
+    diff --git a/tag-example3.txt b/tag-example3.txt
+    index c8b10e1..42e0a75 100644
+    --- a/tag-example3.txt
+    +++ b/tag-example3.txt
+    @@ -1,4 +1,4 @@
+     Title: Tag example 3
+    -Tags: Tag1, Tag2, Tag3
+    +Tags: tag1, tag2, tag3
