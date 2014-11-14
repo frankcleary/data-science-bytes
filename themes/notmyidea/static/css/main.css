@@ -60,7 +60,7 @@ a:hover, a:active {
 }
 
 h1 a:hover {
-    background-color: inherit
+    background-color: steelblue;
 }
 	
 /* Paragraphs */
