@@ -1,7 +1,7 @@
 Title: Label graph axes!
 Date: 11-8-2014
 Category: Tips
-Tags: Data, Python, matplotlib, Code
+Tags: data, python, matplotlib, code
 
 [Download IPython notebook for this post]({filename}extra/ipynb/axeslabeltip.ipynb).
 

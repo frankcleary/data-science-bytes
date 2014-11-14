@@ -1,6 +1,6 @@
 Title: How to Transition from Ph.D. Student to Data Scientist
 Category: Tutorials
-Tags: Data, Career
+Tags: data, career
 Date: 2014-11-1
 
 A friend of mine recently asked me to share some of my experiences in making the transition from a biophysics Ph.D. student to data scientist. I realized there are probably a lot of people interested in making a similar transition who could benefit from my experience.

@@ -1,7 +1,7 @@
 Title: Working with dates in pandas: a few examples
 Date: 11-7-2014
 Category: Tips
-Tags: Python, pandas, Data, Code
+Tags: python, pandas, data, code
 
 [pandas](http://pandas.pydata.org) has a lot of lifesaving features for dealing with dates. Here's an [example timeseries data file]({filename}extra/timeseries.txt), which happens contains a missing date:
 
