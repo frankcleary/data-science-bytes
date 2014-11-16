@@ -17,7 +17,7 @@
 	{% if article.related_posts %}
 		<ul>
 		{% for related_post in article.related_posts %}
-			<li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+			<li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>, Score: {{ related_post.score[article.source_path] }}</li>
 		{% endfor %}
 		</ul>
 	{% endif %}

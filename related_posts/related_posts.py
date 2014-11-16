@@ -6,11 +6,11 @@ Adds related_posts variable to article's context
 """
 
 from pelican import signals
-from collections import Counter
 from gensim import corpora, models, similarities
 import os
 import nltk
-import time
+from collections import defaultdict
+from pprint import pprint
 
 def get_md_files(base_path='../content'):
     walk = os.walk('content')
@@ -36,6 +36,7 @@ def filter_dictionary(raw_dictionary,
     raw_dictionary.filter_tokens(stop_ids + one_time_ids)
     raw_dictionary.compactify()
 
+
 def recommend_articles():
     fnames = list(get_md_files())
     documents = list(tokenize_files(fnames))
@@ -44,52 +45,44 @@ def recommend_articles():
     corpus = [dictionary.doc2bow(doc) for doc in documents]
     lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=5)
     index = similarities.MatrixSimilarity(lsi[corpus])
+    fname_scores = defaultdict(list)
     for fname, sims in zip(fnames, index):
         sims = sorted(enumerate(sims), key=lambda item: -item[1])
         for id, score in sims:
             if fname == fnames[id]:
-                print "RESULTS FOR: " + fname
                 continue
-            print score, fnames[id]
+            fname_scores[os.path.abspath(fname)].append(
+                (os.path.abspath(fnames[id]), score)
+            )
+    return fname_scores
 
 
 def add_related_posts(generator):
     # get the max number of entries from settings
     # or fall back to default (5)
-    recommend_articles()
-    numentries = generator.settings.get('RELATED_POSTS_MAX', 5)
+    fname_scores = recommend_articles()
+    numentries = 5
+    articles_by_path = {art.source_path: art for art in generator.articles}
     for article in generator.articles:
-        # set priority in case of forced related posts
-        if hasattr(article,'related_posts'):
-            # split slugs 
-            related_posts = article.related_posts.split(',')
-            posts = [] 
-            # get related articles
-            for slug in related_posts:
-                i = 0
-                for a in generator.articles:
-                    if i >= numentries: # break in case there are max related psots
-                        break
-                    if a.slug == slug:
-                        posts.append(a)
-                        i += 1
-
-            article.related_posts = posts
-        else:
-            # no tag, no relation
-            if not hasattr(article, 'tags'):
-                continue
-
-            # score = number of common tags
-            scores = Counter()
-            for tag in article.tags:
-                scores += Counter(generator.tags[tag])
-
-            # remove itself
-            scores.pop(article)
-
-            article.related_posts = [other for other, count 
-                in scores.most_common(numentries)]
+        article.score = {}
+    for article in generator.articles:
+        article.score = {}
+        related_posts = sorted(fname_scores[article.source_path], key=lambda x: -x[1])
+        related_posts = filter(lambda x: 'pages' not in x[0], related_posts)
+        print(article)
+        pprint(related_posts)
+        posts = []
+        for i, entry in enumerate(related_posts):
+            #if i >= numentries:
+            #    break
+            source_path, similarity = entry
+            try:
+                art = articles_by_path[source_path]
+                article.score[art.source_path] = similarity
+            except KeyError:
+                print "can't find article {}".format(source_path)
+            posts.append(art)
+        article.related_posts = posts
 
 def register():
     signals.article_generator_finalized.connect(add_related_posts)
