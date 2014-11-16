@@ -7,6 +7,10 @@ SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
+LOAD_CONTENT_CACHE = False
+PLUGIN_PATHS = ["related_posts",]
+PLUGINS = ['related_posts',]
+
 PATH = 'content'
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',

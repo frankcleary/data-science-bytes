@@ -12,8 +12,16 @@
 
     <div class="entry-content">
       {% include 'article_infos.html' %}
-      {{ article.content }}
-    </div><!-- /.entry-content -->
+	{{ article.content }}
+	<h1>Related Posts</h1>
+	{% if article.related_posts %}
+		<ul>
+		{% for related_post in article.related_posts %}
+			<li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	  </div><!-- /.entry-content -->
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
     <div class="comments">
       <br/>
