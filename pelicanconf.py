@@ -8,7 +8,7 @@ SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
 LOAD_CONTENT_CACHE = False
-PLUGIN_PATHS = ["related_posts",]
+PLUGIN_PATHS = ["related_posts"]
 PLUGINS = ['related_posts',]
 
 PATH = 'content'
