@@ -60,14 +60,18 @@ def add_related_posts(generator):
         print(article)
         pprint(related_posts)
         posts = []
-        for source_path, similarity in related_posts:
+        for i, entry in enumerate(related_posts):
+            if i >= numentries:
+                break
+            source_path, similarity = entry
             try:
                 art = articles_by_path[source_path]
-                article.score[art.source_path] = similarity
+                article.score[unicode(art.source_path)] = similarity
+                print article.score
             except KeyError:
                 print "can't find article {}".format(source_path)
             posts.append(art)
-        article.related_posts = posts[:numentries]
+        article.related_posts = posts
 
 def register():
     signals.article_generator_finalized.connect(add_related_posts)
