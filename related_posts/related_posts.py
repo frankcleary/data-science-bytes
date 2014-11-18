@@ -5,6 +5,7 @@ Related posts plugin for Pelican
 Adds related_posts variable to article's context
 """
 
+from bs4 import BeautifulSoup
 from pelican import signals
 from gensim import corpora, models, similarities
 import os
@@ -12,19 +13,6 @@ import nltk
 from collections import defaultdict
 from pprint import pprint
 
-def get_md_files(base_path='../content'):
-    walk = os.walk('content')
-    for path, _, filenames in walk:
-        for fname in filenames:
-            if fname.endswith('.md'):
-                yield os.path.join(path, fname)
-
-
-def tokenize_files(fnames):
-    for fname in fnames:
-        with open(fname) as f:
-            tokenized_lines = [nltk.word_tokenize(line.strip()) for line in f]
-        yield sum(tokenized_lines, [])
 
 def filter_dictionary(raw_dictionary,
                       stop_words=nltk.corpus.stopwords.words('english') + [':'],
@@ -37,9 +25,10 @@ def filter_dictionary(raw_dictionary,
     raw_dictionary.compactify()
 
 
-def recommend_articles():
-    fnames = list(get_md_files())
-    documents = list(tokenize_files(fnames))
+def recommend_articles(articles):
+    documents = [nltk.word_tokenize(BeautifulSoup(article.content).get_text())
+                 for article in articles]
+    fnames = [article.source_path for article in articles]
     dictionary = corpora.Dictionary(documents)
     filter_dictionary(dictionary)
     corpus = [dictionary.doc2bow(doc) for doc in documents]
@@ -60,7 +49,7 @@ def recommend_articles():
 def add_related_posts(generator):
     # get the max number of entries from settings
     # or fall back to default (5)
-    fname_scores = recommend_articles()
+    fname_scores = recommend_articles(generator.articles)
     numentries = 5
     articles_by_path = {art.source_path: art for art in generator.articles}
     for article in generator.articles:
