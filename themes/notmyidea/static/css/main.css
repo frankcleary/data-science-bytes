@@ -60,7 +60,7 @@ a:hover, a:active {
 }
 
 h1 a:hover {
-    background-color: inherit
+    background-color: steelblue;
 }
 	
 /* Paragraphs */
@@ -95,7 +95,7 @@ li { margin-top: 0.5em;}
     margin-bottom: 1px;
 }
 
-.readmore { float: right }
+.readmore { font-size: 1.5em }
 
 dl {margin: 0 0 1.5em 0;}
 dt {font-weight: bold;}

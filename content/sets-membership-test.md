@@ -1,7 +1,7 @@
 Title: How to quickly test if an element belongs to a group
 Date: 11-05-2014
 Category: Tutorials
-Tags: Code, Data, Python
+Tags: code, data, python
 
 A common need in data science is to test if a some group of data contains a given value. One specific example would be to test if a word is a [stop word]({filename}filter-common-words.md).
 

@@ -1,7 +1,7 @@
 Title: Label graph axes!
 Date: 11-8-2014
 Category: Tips
-Tags: Data, Python, matplotlib, Code
+Tags: data, python, matplotlib, code
 
 [Download IPython notebook for this post]({filename}extra/ipynb/axeslabeltip.ipynb).
 
@@ -18,7 +18,7 @@ It's easy enough to make a plot using matplotlib.
 
 ![basic matplotlib plot]({filename}extra/images/axeslabelbase.png)
 
-This plot however is not great data science. In fact it's poor data science and it happens all too often. By far the biggest problem is the lack of axis labels, no one (including yourself next week) is going to be able to get any information out of this plot without proper axis labels.
+This plot is not great data science. In fact it's poor data science and it happens all too often. By far the biggest problem is the lack of axis labels, no one (including yourself next week) is going to be able to get any information out of this plot without proper axis labels.
 
 With just a few extra lines this plot can be made presentable. Note that it's easy to include LaTeX formatting in matplotlib plots.
 

@@ -1,7 +1,7 @@
 Title: Get a list of all English words in python
 Date: 11-3-2014
 Category: Tips
-Tags: Data, Python, nltk
+Tags: data, python, nltk
 
 The `nltk` library for python contains a lot of useful data in addition to it's functions. One convient data set is a list of all english words, accessible like so:
 
