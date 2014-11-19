@@ -5,72 +5,113 @@ Related posts plugin for Pelican
 Adds related_posts variable to article's context
 """
 
-from bs4 import BeautifulSoup
-from pelican import signals
-from gensim import corpora, models, similarities
 import os
+from collections import defaultdict
+
+from bs4 import BeautifulSoup
 from nltk.tokenize import RegexpTokenizer
 import nltk
-from collections import defaultdict
-from pprint import pprint
+from pelican import signals
+from gensim import corpora, models, similarities
 
 
 def filter_dictionary(raw_dictionary,
                       stop_words=nltk.corpus.stopwords.words('english'),
                       min_count=2):
+    """Filter raw_dictionary inplace to remove stopwords and words occurring
+    less than min_count number of times.
+
+    Will compactify the dictionary before exiting.
+
+    :param raw_dictionary: gensim.corpora.Dictionary to filter
+    :param stop_words: iterable of words to remove
+    :param min_count: int minimum word count in resulting dictionary
+    """
     stop_ids = [raw_dictionary.token2id[word] for word in stop_words
                 if word in raw_dictionary.token2id]
-    print 'a' in raw_dictionary
     rare_ids = [id for id, freq in raw_dictionary.dfs.iteritems()
-                    if freq < min_count]
+                if freq < min_count]
     raw_dictionary.filter_tokens(stop_ids + rare_ids)
     raw_dictionary.compactify()
-    return raw_dictionary
 
-def recommend_articles(articles):
-    tokenizer = RegexpTokenizer(r'\w+')
-    documents = [tokenizer.tokenize(BeautifulSoup(article.content).get_text().lower())
-                 for article in articles]
-    fnames = [article.source_path for article in articles]
+
+def generate_similarity_index(documents, model=models.LsiModel):
+    """Return gensim.MatrixSimilarity of text documents using the supplied
+    model.
+
+    :param documents: An iterable of documents consisting of a list of words
+    :param model: gensim.models to apply
+    :return: gensim.MatrixSimilary the similarity values for every document to
+        every other document.
+    """
     dictionary = corpora.Dictionary(documents)
-    dictionary = filter_dictionary(dictionary)
+    filter_dictionary(dictionary)
     corpus = [dictionary.doc2bow(doc) for doc in documents]
-    lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=5)
-    index = similarities.MatrixSimilarity(lsi[corpus])
-    for topic in lsi.print_topics():
+    topic_model = model(corpus, id2word=dictionary, num_topics=5)
+    for topic in topic_model.print_topics():
         print topic
-    fname_scores = defaultdict(list)
-    for fname, sims in zip(fnames, index):
+    return similarities.MatrixSimilarity(topic_model[corpus])
+
+
+def recommend_articles(articles, tokenizer=RegexpTokenizer(r'\w+')):
+    """Return a dictionary keyed by article source_path whose values are a
+    sorted (descending) list of (article.source_path, similarity_score) tuples
+    for every other article.
+
+    HTML tags are stripped.
+
+    :param articles: articles from a pelican ArticleGenerator
+    :param tokenizer: an nltk tokenizer used to split article text into words
+    :return: dictionary of similarity scores of other articles to keyed article
+    """
+    article_texts = [BeautifulSoup(article.content).get_text().lower()
+                     for article in articles]
+    documents = [tokenizer.tokenize(text) for text in article_texts]
+    index = generate_similarity_index(documents)
+    similarity_scores = defaultdict(list)
+    for article, sims in zip(articles, index):
         sims = sorted(enumerate(sims), key=lambda item: -item[1])
         for id, score in sims:
-            if fname == fnames[id]:
+            if article == articles[id]:
                 continue
-            fname_scores[os.path.abspath(fname)].append(
-                (os.path.abspath(fnames[id]), score)
+            similarity_scores[os.path.abspath(article.source_path)].append(
+                (articles[id].source_path, score)
             )
-    return fname_scores
+    return similarity_scores
 
 
-def add_related_posts(generator):
-    fname_scores = recommend_articles(generator.articles)
-    numentries = 5
+def add_related_posts(generator, default_max_related_posts=5):
+    """Find articles related to each article in a pelican ArticleGenerator and
+    add the source_paths of the related articles and their similarity scores to
+    the article metadata.
+
+    :param generator: a pelican ArticleGenerator
+    :param default_max_related_posts: the default max number of most similar
+     posts. This will be overridden if MAX_RELATED_POSTS is set in the pelican
+     config file.
+    """
+
+    max_posts = generator.settings.get("MAX_RELATED_POSTS",
+                                       default_max_related_posts)
+    similarity_scores = recommend_articles(generator.articles)
     articles_by_path = {art.source_path: art for art in generator.articles}
     for article in generator.articles:
+        related_posts = sorted(similarity_scores[article.source_path],
+                               key=lambda x: -x[1])
+        article.related_posts = []
         article.score = {}
-    for article in generator.articles:
-        related_posts = sorted(fname_scores[article.source_path], key=lambda x: -x[1])
-        posts = []
         for i, entry in enumerate(related_posts):
-            if i >= numentries:
+            if i >= max_posts:
                 break
             source_path, similarity = entry
             try:
-                art = articles_by_path[source_path]
-                article.score[unicode(art.source_path)] = similarity
+                related_post = articles_by_path[source_path]
+                article.score[unicode(related_post.source_path)] = similarity
             except KeyError:
                 print "can't find article {}".format(source_path)
-            posts.append(art)
-        article.related_posts = posts
+            article.related_posts.append(related_post)
+
 
 def register():
+    """Entry point for ArticleGenerator from pelican"""
     signals.article_generator_finalized.connect(add_related_posts)

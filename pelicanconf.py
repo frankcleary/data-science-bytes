@@ -10,6 +10,7 @@ THEME = 'themes/notmyidea'
 LOAD_CONTENT_CACHE = False
 PLUGIN_PATHS = ["related_posts"]
 PLUGINS = ['related_posts',]
+MAX_RELATED_POSTS = 5
 
 PATH = 'content'
 STATIC_PATHS = ['extra/favicon2.png',
