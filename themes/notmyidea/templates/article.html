@@ -18,7 +18,7 @@
 		<ul>
 		{% for related_post in article.related_posts %}
 			<li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>, 
-			  Score: {{ article.score.get(related_post.source_path) }}</li>
+			  Score: {{ '%0.3f' % article.score.get(related_post.source_path) }}</li>
 		{% endfor %}
 		</ul>
 	{% endif %}

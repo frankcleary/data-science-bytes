@@ -1,15 +1,11 @@
 """
-Related posts plugin for Pelican
-================================
-
-Adds related_posts variable to article's context
+CHANGE HEADER
 """
 
-import os
 from collections import defaultdict
 
+# TODO - protect imports with try/catch per pelican standards
 from bs4 import BeautifulSoup
-from nltk.tokenize import RegexpTokenizer
 import nltk
 from pelican import signals
 from gensim import corpora, models, similarities
@@ -53,7 +49,7 @@ def generate_similarity_index(documents, model=models.LsiModel):
     return similarities.MatrixSimilarity(topic_model[corpus])
 
 
-def recommend_articles(articles, tokenizer=RegexpTokenizer(r'\w+')):
+def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
     """Return a dictionary keyed by article source_path whose values are a
     sorted (descending) list of (article.source_path, similarity_score) tuples
     for every other article.
@@ -74,7 +70,7 @@ def recommend_articles(articles, tokenizer=RegexpTokenizer(r'\w+')):
         for id, score in sims:
             if article == articles[id]:
                 continue
-            similarity_scores[os.path.abspath(article.source_path)].append(
+            similarity_scores[article.source_path].append(
                 (articles[id].source_path, score)
             )
     return similarity_scores
@@ -90,7 +86,6 @@ def add_related_posts(generator, default_max_related_posts=5):
      posts. This will be overridden if MAX_RELATED_POSTS is set in the pelican
      config file.
     """
-
     max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                        default_max_related_posts)
     similarity_scores = recommend_articles(generator.articles)
