@@ -14,7 +14,7 @@ The latent semantic indexing model that I chose to model topics uses the same
 ideas I discuss in my [SVD tutotial (finding similar research
 papers)](http://www.frankcleary.com/svd), although the input features are scaled 
 differently and a cosine distance metric is used. Since this is a data science 
-blog I included the score of each similar article along with the link.
+blog I included the score of each similar article along with the link. The source code is below, also available on [github](https://github.com/frankcleary/DataScienceBytes/tree/master/similar_posts).
 
     :::python
     """
