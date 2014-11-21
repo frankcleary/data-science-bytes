@@ -1,4 +1,5 @@
 from fabric.api import *
+from prodlogin import *
 import fabric.contrib.project as project
 import os
 import sys
@@ -10,8 +11,6 @@ env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
 # Remote server configuration
-production = 'fcleary_dsbytes@ssh.phx.nearlyfreespeech.net'
-dest_path = '/home/public'
 
 # Rackspace Cloud Files configuration settings
 env.cloudfiles_username = 'my_rackspace_username'
