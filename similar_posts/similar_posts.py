@@ -32,6 +32,7 @@ https://github.com/getpelican/pelican-plugins/tree/master/related_posts
 from collections import defaultdict
 
 # imports protected to fail gracefully
+imports = True
 try:
     from bs4 import BeautifulSoup
     import nltk
@@ -63,7 +64,7 @@ def filter_dictionary(raw_dictionary,
     raw_dictionary.compactify()
 
 
-def generate_similarity_index(documents, model=models.LsiModel):
+def generate_similarity_index(documents, model=models.LsiModel  ):
     """Return gensim.MatrixSimilarity of text documents using the supplied
     model.
 
