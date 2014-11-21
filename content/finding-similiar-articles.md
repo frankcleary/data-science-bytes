@@ -3,24 +3,64 @@ Date: 11-20-2014
 Category: Tutorials
 Tags: data, python, gensim, nltk, pelican, machine learning
 
-Over the weekend I got curious about how different posts in this blog were similar to each other, and thought about putting links to similar posts at the end of each article. I used the [gensim (topic modeling for humans)](http://radimrehurek.com/gensim/) python library to find similar articles and I wrote a plugin for [pelican](http://docs.getpelican.com/), the blogging software that powers this site to insert links to the most similar articles.
+Over the weekend I got curious about how different posts in this blog were 
+similar to each other, and thought about putting links to similar posts at the 
+end of each article. I used the [gensim](http://radimrehurek.com/gensim/) python library (topic modeling for humans) to find similar 
+articles and I wrote a plugin for [pelican](http://docs.getpelican.com/), the 
+blogging software that powers this site to insert links to the most similar 
+articles.
 
-The latent semantic indexing model that I chose to model topics uses the same ideas I discuss in my [SVD tutotial (finding similar reserach papers)](http://www.frankcleary.com/svd), although the input features are scaled differently and a cosine distance metric is used. Since this is a data science blog I included the score of each similar article along with the link.
+The latent semantic indexing model that I chose to model topics uses the same 
+ideas I discuss in my [SVD tutotial (finding similar research
+papers)](http://www.frankcleary.com/svd), although the input features are scaled 
+differently and a cosine distance metric is used. Since this is a data science 
+blog I included the score of each similar article along with the link.
 
     :::python
     """
-    Related posts plugin for Pelican
-    ================================
+    Pelican plugin that finds articles about similar articles
+    =========================================================
+    Frank Cleary - www.datasciencebytes.com - frank@frankcleary.com
     
-    Adds related_posts variable to article's context
+    This plugin uses the gensim library to find articles about similar topics to
+    each article in the site. The most similar articles up to a given limit
+    (default 5, can be specified in pelican configs as MAX_RELATED_POSTS) are added
+    in sorted order of similarity as a list to the related_posts attribute of the
+    article. The article also contains a dictionary of related article similarity
+    scores keyed by related_article.source_path.
+    
+    The gensim library requires numpy and scipy, which may be non-trivial to
+    install.
+    
+    Add the following (or similar) to the article template to show the results.
+    {% if article.related_posts %}
+    <h1>Related Posts</h1>
+      <ul>
+        {% for related_post in article.related_posts %}
+          <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>,
+          Score: {{ '%0.3f' % article.score.get(related_post.source_path) }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    
+    Some parts of this implementation relating to pelican are based on:
+    https://github.com/getpelican/pelican-plugins/tree/master/related_posts
     """
     
     from collections import defaultdict
     
-    from bs4 import BeautifulSoup
-    import nltk
-    from pelican import signals
-    from gensim import corpora, models, similarities
+    # imports protected to fail gracefully
+    imports = True
+    try:
+        from bs4 import BeautifulSoup
+        import nltk
+        from pelican import signals
+        from gensim import corpora, models, similarities
+    except ImportError as error:
+        print "related_posts could not complete imports:"
+        print error
+        imports = False
     
     
     def filter_dictionary(raw_dictionary,
@@ -43,7 +83,7 @@ The latent semantic indexing model that I chose to model topics uses the same id
         raw_dictionary.compactify()
     
     
-    def generate_similarity_index(documents, model=models.LsiModel):
+    def generate_similarity_index(documents, model=models.LsiModel  ):
         """Return gensim.MatrixSimilarity of text documents using the supplied
         model.
     
@@ -98,7 +138,8 @@ The latent semantic indexing model that I chose to model topics uses the same id
          posts. This will be overridden if MAX_RELATED_POSTS is set in the pelican
          config file.
         """
-    
+        if not imports:
+            return
         max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                            default_max_related_posts)
         similarity_scores = recommend_articles(generator.articles)

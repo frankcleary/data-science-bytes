@@ -9,18 +9,18 @@
            title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
       {% include 'twitter.html' %}
     </header>
-
+  
     <div class="entry-content">
       {% include 'article_infos.html' %}
 	{{ article.content }}
-	<h1>Related Posts</h1>
 	{% if article.related_posts %}
-		<ul>
-		{% for related_post in article.related_posts %}
-			<li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>, 
-			  Score: {{ '%0.3f' % article.score.get(related_post.source_path) }}</li>
-		{% endfor %}
-		</ul>
+	<h1>Similar Posts</h1>
+	  <ul>
+	    {% for related_post in article.related_posts %}
+	      <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>, 
+	      Score: {{ '%0.3f' % article.score.get(related_post.source_path) }}</li>
+	    {% endfor %}
+	  </ul>
 	{% endif %}
 	  </div><!-- /.entry-content -->
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}

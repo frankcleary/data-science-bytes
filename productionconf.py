@@ -16,6 +16,10 @@ EXTRA_PATH_METADATA = {
     'extra/favicon2.png': {'path': 'favicon.ico'},
 }
 
+PLUGIN_PATHS = ["similar_posts"]
+PLUGINS = ['similar_posts',]
+MAX_RELATED_POSTS = 5
+
 TIMEZONE = 'America/Los_Angeles'
 
 DEFAULT_LANG = u'en'

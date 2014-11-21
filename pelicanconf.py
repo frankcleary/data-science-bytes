@@ -7,9 +7,8 @@ SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
-LOAD_CONTENT_CACHE = False
-PLUGIN_PATHS = ["related_posts"]
-PLUGINS = ['related_posts',]
+PLUGIN_PATHS = ["similar_posts"]
+PLUGINS = ['similar_posts',]
 MAX_RELATED_POSTS = 5
 
 PATH = 'content'
