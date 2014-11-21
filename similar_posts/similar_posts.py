@@ -1,6 +1,6 @@
 """
-Pelican plugin that finds articles about similar articles
-=========================================================
+Pelican plugin that finds articles about similar topics
+=======================================================
 Frank Cleary - www.datasciencebytes.com - frank@frankcleary.com
 
 This plugin uses the gensim library to find articles about similar topics to
