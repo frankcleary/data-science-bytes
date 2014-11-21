@@ -1,14 +1,46 @@
 """
-CHANGE HEADER
+Pelican plugin that finds articles about similar articles
+=========================================================
+Frank Cleary - www.datasciencebytes.com - frank@frankcleary.com
+
+This plugin uses the gensim library to find articles about similar topics to
+each article in the site. The most similar articles up to a given limit
+(default 5, can be specified in pelican configs as MAX_RELATED_POSTS) are added
+in sorted order of similarity as a list to the related_posts attribute of the
+article. The article also contains a dictionary of related article similarity
+scores keyed by related_article.source_path.
+
+The gensim library requires numpy and scipy, which may be non-trivial to
+install.
+
+Add the following (or similar) to the article template to show the results.
+{% if article.related_posts %}
+<h1>Related Posts</h1>
+  <ul>
+    {% for related_post in article.related_posts %}
+      <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a>,
+      Score: {{ '%0.3f' % article.score.get(related_post.source_path) }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+
+Some parts of this implementation relating to pelican are based on:
+https://github.com/getpelican/pelican-plugins/tree/master/related_posts
 """
 
 from collections import defaultdict
 
-# TODO - protect imports with try/catch per pelican standards
-from bs4 import BeautifulSoup
-import nltk
-from pelican import signals
-from gensim import corpora, models, similarities
+# imports protected to fail gracefully
+try:
+    from bs4 import BeautifulSoup
+    import nltk
+    from pelican import signals
+    from gensim import corpora, models, similarities
+except ImportError as error:
+    print "related_posts could not complete imports:"
+    print error
+    imports = False
 
 
 def filter_dictionary(raw_dictionary,
@@ -86,6 +118,8 @@ def add_related_posts(generator, default_max_related_posts=5):
      posts. This will be overridden if MAX_RELATED_POSTS is set in the pelican
      config file.
     """
+    if not imports:
+        return
     max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                        default_max_related_posts)
     similarity_scores = recommend_articles(generator.articles)
