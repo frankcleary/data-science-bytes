@@ -46,22 +46,14 @@ blog I included the score of each similar article along with the link. The sourc
     
     Some parts of this implementation relating to pelican are based on:
     https://github.com/getpelican/pelican-plugins/tree/master/related_posts
-    """
-    
+    """    
     from collections import defaultdict
     
-    # imports protected to fail gracefully
-    imports = True
-    try:
-        from bs4 import BeautifulSoup
-        import nltk
-        from pelican import signals
-        from gensim import corpora, models, similarities
-    except ImportError as error:
-        print "related_posts could not complete imports:"
-        print error
-        imports = False
-    
+	from bs4 import BeautifulSoup
+	import nltk
+	from pelican import signals
+	from gensim import corpora, models, similarities
+		
     
     def filter_dictionary(raw_dictionary,
                           stop_words=nltk.corpus.stopwords.words('english'),
@@ -138,8 +130,6 @@ blog I included the score of each similar article along with the link. The sourc
          posts. This will be overridden if MAX_RELATED_POSTS is set in the pelican
          config file.
         """
-        if not imports:
-            return
         max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                            default_max_related_posts)
         similarity_scores = recommend_articles(generator.articles)
