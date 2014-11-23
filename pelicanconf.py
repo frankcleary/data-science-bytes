@@ -11,7 +11,9 @@ PLUGIN_PATHS = ["similar_posts"]
 PLUGINS = ['similar_posts',]
 MAX_RELATED_POSTS = 5
 
+OUTPUT_PATH = '/var/www/'
 PATH = 'content'
+STATIC_EXCLUDE_SOURCES = False
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',

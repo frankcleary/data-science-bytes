@@ -36,6 +36,7 @@ import nltk
 from pelican import signals
 from gensim import corpora, models, similarities
 
+
 def filter_dictionary(raw_dictionary,
                       stop_words=nltk.corpus.stopwords.words('english'),
                       min_count=2):
@@ -56,7 +57,7 @@ def filter_dictionary(raw_dictionary,
     raw_dictionary.compactify()
 
 
-def generate_similarity_index(documents, model=models.LsiModel  ):
+def generate_similarity_index(documents, model=models.LsiModel):
     """Return gensim.MatrixSimilarity of text documents using the supplied
     model.
 
