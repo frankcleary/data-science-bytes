@@ -76,7 +76,7 @@ blog I included the score of each similar article along with the link. The sourc
         raw_dictionary.compactify()
     
     
-    def generate_similarity_index(documents, model=models.LsiModel  ):
+    def generate_similarity_index(documents, model=models.LsiModel):
         """Return gensim.MatrixSimilarity of text documents using the supplied
         model.
     

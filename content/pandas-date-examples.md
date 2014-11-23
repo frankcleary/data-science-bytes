@@ -3,7 +3,7 @@ Date: 11-7-2014
 Category: Tips
 Tags: python, pandas, data, code
 
-[pandas](http://pandas.pydata.org) has a lot of lifesaving features for dealing with dates. Here's an [example timeseries data file]({filename}extra/timeseries.txt), which happens contains a missing date:
+[pandas](http://pandas.pydata.org) has a lot of lifesaving features for dealing with dates. Here's an [example timeseries data file](http://www.datasciencebytes.com/extra/timeseries.txt), which happens contains a missing date:
 
 
     date,temp
@@ -43,7 +43,7 @@ Loading and plotting the data in pandas gives this result:
     
     In [6]: df.plot(marker='o', ylim=[50, 65]); plt.ylabel("Temperature (F)")
     
-![Missing date graph]({filename}extra/images/missingdateplot.png)
+![Missing date graph](http://www.datasciencebytes.com/extra/images/missingdateplot.png)
 
 Notice that even though Nov. 3rd and Nov. 5th are a day apart those two dates are not separated by any extra distance on the graph. This is because pandas understood the data in the date column as strings, not as dates. This is confirmed by the df.index command above showing the index is made up of strings. Luckily it's easy to have pandas parse dates from this column by adding the `parse_dates=True` parameter to `read_csv()`:
 
@@ -59,7 +59,7 @@ Notice that even though Nov. 3rd and Nov. 5th are a day apart those two dates ar
     In [9]: df.plot(marker='o', ylim=[50, 65]); plt.ylabel("Temperature (F)")
     
 
-![Correct dates graph]({filename}extra/images/fixeddateplot.png)
+![Correct dates graph](http://www.datasciencebytes.com/extra/images/fixeddateplot.png)
 
 Now the plot has the correct spacing. Pandas understood that the dates should be spaced according the amount of time between them, not according to their index.
 
