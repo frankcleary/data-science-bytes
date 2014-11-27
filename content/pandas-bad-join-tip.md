@@ -1,9 +1,11 @@
-Title: When pandas joins go wrong: check data types
+Title: When joins go wrong, check data types
 Date: 11-27-2014
 Category: Tips
-Tags: pandas, python, data
+Tags: pandas, python, data, cleaning data
 
-Writing and debugging joins can be especially difficult when dealing with data living in text files. Consider trying to join the following two csv files on the city_id column.
+Writing and debugging joins can be especially difficult when dealing with data from text files. In some cases there is no resulting data, or (much harder to notice!) a few lines that should be included are dropped. Here I'll go into an example of a failed join in pandas, and how to fix it.
+
+Consider trying to join the following two csv files on the city_id column.
 
 	:::console
 	$ cat city-names.csv
@@ -49,7 +51,7 @@ Read the data into pandas with `read_csv`:
 	4  Unknown           116768
 
 ### Attempting the join
-If we attempt to join the two dataframes on their shared columns (city_id in this case), the result is empty, although we would expect ids 1-4 to match:
+If we attempt to join the two dataframes on their shared columns (`city_id` in this case), the result is empty, although we would expect ids 1-4 to match:
 
 	:::python	
 	In [6]: city_names_df.merge(city_pop_df)
@@ -59,7 +61,7 @@ If we attempt to join the two dataframes on their shared columns (city_id in thi
 	Index: []
 
 ## What went wrong
-What's going on? The problem is that the value "Unknown" in `city-populations.csv` forces the entire column to be parsed as strings, which then don't equate with the their matching values in `city-names.csv`. This can be seen by inspecting the data types of the dataframes.
+What's going on? The problem is that the value "Unknown" in `city-populations.csv` forces that column to be parsed as string values, which then don't equate with the their matching values in `city-names.csv`. This can be seen by inspecting the data types of the dataframes.
 
 	:::python
 	In [7]: city_names_df.dtypes
@@ -74,7 +76,7 @@ What's going on? The problem is that the value "Unknown" in `city-populations.cs
 	city_population     int64
 	dtype: object
 
-Notice that the city_id column has type numeric (int64) in one dataframe and object in the other. Looking in more detail:
+Notice that the `city_id` column has a numeric type (`int64`) in one dataframe and `object` in the other. Looking in more detail:
 
 	:::python
 	In [9]: city_names_df.ix[0, 'city_id']
@@ -92,28 +94,29 @@ Notice that the city_id column has type numeric (int64) in one dataframe and obj
 	In [13]: city_names_df.ix[0, 'city_id'] == city_pop_df.ix[0, 'city_id']
 	Out[13]: False
 
-## Solutions. 
+# Solutions:
 Which option is best will depend on the specifics of how your data is dirty.
 
 ### Option 1. Apply a parsing function to parse the data:
 
 	:::python
+	import numpy as np
 	def parse(x):
     try:
         return int(x)
     except ValueError:
         return np.nan
 
-	In [20]: city_pop_df['city_id'] = city_pop_df['city_id'].apply(parse)
+	In [14]: city_pop_df['city_id'] = city_pop_df['city_id'].apply(parse)
 
-	In [21]: city_pop_df.dtypes
-	Out[21]:
+	In [15]: city_pop_df.dtypes
+	Out[15]:
 	city_id            float64
 	city_population      int64
 	dtype: object
 
-	In [22]: city_names_df.merge(city_pop_df)
-	Out[22]:
+	In [16]: city_names_df.merge(city_pop_df)
+	Out[16]:
 	   city_id   city_name  city_population
 	0        1      Dublin            52105
 	1        2  Pleasanton            74110
@@ -123,12 +126,14 @@ Which option is best will depend on the specifics of how your data is dirty.
 ### Option 2. Search for non-number string and replace when with NaN:
 
 	:::python
-	In [24]: import re
+	In [17]: import re
 
-	In [25]: city_pop_df['city_id'] = city_pop_df['city_id'].replace(re.compile('\D*'), np.nan).astype(np.float)
+	In [18]: replaced_with_nan = city_pop_df['city_id'].replace(re.compile('\D+'), np.nan)
+	
+	In [19]: city_pop_df['city_id'] = replaced_with_nan.astype(np.float)
 
-	In [26]: city_names_df.merge(city_pop_df)
-	Out[26]:
+	In [20]: city_names_df.merge(city_pop_df)
+	Out[20]:
 	   city_id   city_name  city_population
 	0        1      Dublin            52105
 	1        2  Pleasanton            74110
@@ -142,13 +147,13 @@ Which option is best will depend on the specifics of how your data is dirty.
 	$ head -n1 city-populations.csv > cleaned-city-populations.csv
 	$ grep -E '^[0-9]+,' city-populations.csv >> cleaned-city-populations.csv
  
-Load new the file (the cleaning also removed the column headers):
+Load new the file:
  
     :::python
-	In [33]: clean_pop_df = pd.read_csv('cleaned-city-populations.csv')
+	In [21]: clean_pop_df = pd.read_csv('cleaned-city-populations.csv')
 	
-	In [34]: city_names_df.merge(clean_pop_df)
-	Out[34]:
+	In [22]: city_names_df.merge(clean_pop_df)
+	Out[22]:
 	   city_id   city_name  city_population
 	0        1      Dublin            52105
 	1        2  Pleasanton            74110
@@ -165,10 +170,10 @@ Load new the file (the cleaning also removed the column headers):
 Load the new file:
 	
     :::python
-	In [33]: clean_pop_df = pd.read_csv('cleaned-city-populations2.csv')
+	In [23]: clean_pop_df = pd.read_csv('cleaned-city-populations2.csv')
 	
-	In [34]: city_names_df.merge(clean_pop_df)
-	Out[34]:
+	In [24]: city_names_df.merge(clean_pop_df)
+	Out[24]:
 	   city_id   city_name  city_population
 	0        1      Dublin            52105
 	1        2  Pleasanton            74110
