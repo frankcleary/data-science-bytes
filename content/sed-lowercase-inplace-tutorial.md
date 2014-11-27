@@ -1,7 +1,7 @@
 Title: Using sed to make specific text lowercase in place
 Date: 11-13-2014
 Category: Tutorials
-Tags: data, command line, sed
+Tags: data, command line, sed, cleaning data
 
 Data science, I'm sorry to say, often involves cleaning up input data into a usable and uniform format. Command line tools like `grep`, `awk` and `sed` provide an arcane power to manipulate text in files of arbitrary size. Mastering these tools can separate data science novices from data scientists with flaming robes (to continue on the arcane theme). 
 
