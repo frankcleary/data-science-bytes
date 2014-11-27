@@ -51,7 +51,7 @@ Read the data into pandas with `read_csv`:
 	4  Unknown           116768
 
 ### Attempting the join
-If we attempt to join the two dataframes on their shared columns (`city_id` in this case), the result is empty, although we would expect ids 1-4 to match:
+If we attempt to join the two DataFrames on their shared columns (`city_id` in this case), the result is empty, although we would expect ids 1-4 to match:
 
 	:::python	
 	In [6]: city_names_df.merge(city_pop_df)
@@ -61,7 +61,7 @@ If we attempt to join the two dataframes on their shared columns (`city_id` in t
 	Index: []
 
 ## What went wrong
-What's going on? The problem is that the value "Unknown" in `city-populations.csv` forces that column to be parsed as string values, which then don't equate with the their matching values in `city-names.csv`. This can be seen by inspecting the data types of the dataframes.
+What's going on? The problem is that the value "Unknown" in `city-populations.csv` forces that column to be parsed as string values, which then don't equate with the their matching values in `city-names.csv`. This can be seen by inspecting the data types of the DataFrames.
 
 	:::python
 	In [7]: city_names_df.dtypes
@@ -76,7 +76,7 @@ What's going on? The problem is that the value "Unknown" in `city-populations.cs
 	city_population     int64
 	dtype: object
 
-Notice that the `city_id` column has a numeric type (`int64`) in one dataframe and `object` in the other. Looking in more detail:
+Notice that the `city_id` column has a numeric type (`int64`) in one DataFrame and `object` in the other. Looking in more detail:
 
 	:::python
 	In [9]: city_names_df.ix[0, 'city_id']
@@ -180,4 +180,5 @@ Load the new file:
 	2        3    Millbrae            22424
 	3        4    Richmond           107571
 
+## A note on good data science
 If you do use shell commands to alter the files, make sure you either keep the commands in a shell script file or call them directly from your python script so that your work can be exactly reproduced given the raw data. Shell commands can be called from IPython either by prefacing the line with `!` or with the `%%bash` cell magic function.
