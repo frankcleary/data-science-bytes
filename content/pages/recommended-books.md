@@ -30,8 +30,11 @@ using classes in python. PDF and HTML versions are available for free at
  [Green Tea Press](http://www.greenteapress.com/thinkbayes/).
 
 * <a href="http://www.amazon.com/gp/product/1449307116/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449307116&linkCode=as2&tag=datscibyt-20&linkId=BZA5YVIZ64U2ZSQT">Think Stats</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=datscibyt-20&l=as2&o=1&a=1449307116" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-  I especially recommend this book if you're coming into data science from a non-statistics background. It book provides a useful (and fast) introduction to 
-many important statistical concepts using python code. PDF and HTML versions are available for free at [Green Tea Press](http://www.greenteapress.com/thinkstats/).
+  I especially recommend this book if you're coming into data science from a non-statistics background. It provides a useful (and fast) introduction to  many important statistical concepts using python code. PDF and HTML versions are available for free at [Green Tea Press](http://www.greenteapress.com/thinkstats/).
+
+* <a href="http://www.amazon.com/gp/product/B0043D2E22/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B0043D2E22&linkCode=as2&tag=datscibyt-20&linkId=GOIL7UPSC623WLST">Natural Language Processing with Python</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=datscibyt-20&l=as2&o=1&a=B0043D2E22" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+An introduction to dealing with natural language data using the nltk library for python. The book starts out with basic python programming concepts and moves into dealing with natural language data and language processing tasks, including some machine learning techniques. An html version is available at [the nltk website](http://www.nltk.org/book/).
+
 
 ## Preparing for Data Science Interviews
 
