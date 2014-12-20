@@ -3,6 +3,9 @@
 {% block content %}
 <section id="content" class="body">
   <article>
+    {% if article.ipython %}
+    <link rel="stylesheet" href="/theme/css/ipython.min.css">
+    {% endif %}
     <header>
       <h1 class="entry-title">
         <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"

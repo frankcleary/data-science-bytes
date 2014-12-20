@@ -11,13 +11,15 @@ PATH = 'content'
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',
-                'extra/timeseries.txt']
+                'extra/timeseries.txt',
+                'data/']
 EXTRA_PATH_METADATA = {
     'extra/favicon2.png': {'path': 'favicon.ico'},
 }
 
-PLUGIN_PATHS = ["similar_posts"]
-PLUGINS = ['similar_posts',]
+MARKUP = ('md', 'ipynb')
+PLUGIN_PATHS = ["similar_posts", "./plugins"]
+PLUGINS = ['similar_posts', 'ipynb']
 MAX_RELATED_POSTS = 5
 
 TIMEZONE = 'America/Los_Angeles'
