@@ -7,8 +7,9 @@ SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
-PLUGIN_PATHS = ["similar_posts"]
-PLUGINS = ['similar_posts',]
+MARKUP = ('md', 'ipynb')
+PLUGIN_PATHS = ["similar_posts", "./plugins"]
+PLUGINS = ['similar_posts', 'ipynb']
 MAX_RELATED_POSTS = 5
 
 OUTPUT_PATH = '/var/www/'
@@ -17,7 +18,8 @@ STATIC_EXCLUDE_SOURCES = False
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',
-                'extra/timeseries.txt']
+                'extra/timeseries.txt',
+                'data/']
 EXTRA_PATH_METADATA = {
     'extra/favicon2.png': {'path': 'favicon.ico'},
 }
