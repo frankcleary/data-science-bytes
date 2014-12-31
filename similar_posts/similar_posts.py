@@ -57,7 +57,7 @@ def filter_dictionary(raw_dictionary,
     raw_dictionary.compactify()
 
 
-def generate_similarity_index(documents, model=models.LsiModel):
+def generate_similarity_index(documents, max_posts, model=models.LsiModel):
     """Return gensim.MatrixSimilarity of text documents using the supplied
     model.
 
@@ -74,10 +74,12 @@ def generate_similarity_index(documents, model=models.LsiModel):
     for topic in topic_model.print_topics():
         print topic
         print ''
-    return similarities.MatrixSimilarity(topic_model[tfidf[corpus]])
+    return similarities.MatrixSimilarity(topic_model[tfidf[corpus]],
+                                         num_best=max_posts + 1)
 
 
-def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
+def recommend_articles(articles, max_posts,
+                       tokenizer=nltk.RegexpTokenizer(r'\w+')):
     """Return a dictionary keyed by article source_path whose values are a
     sorted (descending) list of (article.source_path, similarity_score) tuples
     for every other article.
@@ -91,13 +93,10 @@ def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
     article_texts = [BeautifulSoup(article.content).body.get_text().lower()
                      for article in articles]
     documents = [tokenizer.tokenize(text) for text in article_texts]
-    index = generate_similarity_index(documents)
+    index = generate_similarity_index(documents, max_posts)
     similarity_scores = defaultdict(list)
     for article, sims in zip(articles, index):
-        sims = sorted(enumerate(sims), key=lambda item: -item[1])
-        for id, score in sims:
-            if article == articles[id]:
-                continue
+        for id, score in sims[1:]:
             similarity_scores[article.source_path].append(
                 (articles[id].source_path, score)
             )
@@ -116,7 +115,7 @@ def add_related_posts(generator, default_max_related_posts=5):
     """
     max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                        default_max_related_posts)
-    similarity_scores = recommend_articles(generator.articles)
+    similarity_scores = recommend_articles(generator.articles, max_posts)
     articles_by_path = {art.source_path: art for art in generator.articles}
     for article in generator.articles:
         related_posts = sorted(similarity_scores[article.source_path],
