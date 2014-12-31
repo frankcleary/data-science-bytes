@@ -69,10 +69,12 @@ def generate_similarity_index(documents, model=models.LsiModel):
     dictionary = corpora.Dictionary(documents)
     filter_dictionary(dictionary)
     corpus = [dictionary.doc2bow(doc) for doc in documents]
-    topic_model = model(corpus, id2word=dictionary, num_topics=5)
+    tfidf = models.tfidfmodel.TfidfModel(corpus=corpus)
+    topic_model = model(tfidf[corpus], id2word=dictionary, num_topics=5)
     for topic in topic_model.print_topics():
         print topic
-    return similarities.MatrixSimilarity(topic_model[corpus])
+        print ''
+    return similarities.MatrixSimilarity(topic_model[tfidf[corpus]])
 
 
 def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
@@ -86,7 +88,7 @@ def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
     :param tokenizer: an nltk tokenizer used to split article text into words
     :return: dictionary of similarity scores of other articles to keyed article
     """
-    article_texts = [BeautifulSoup(article.content).get_text().lower()
+    article_texts = [BeautifulSoup(article.content).body.get_text().lower()
                      for article in articles]
     documents = [tokenizer.tokenize(text) for text in article_texts]
     index = generate_similarity_index(documents)
