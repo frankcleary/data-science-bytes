@@ -1,0 +1,121 @@
+,persona,play,linecount
+0,HAMLET,hamlet,5461
+1,IAGO,othello,3857
+2,OTHELLO,othello,3059
+3,MARK ANTONY,a_and_c,2984
+4,MACBETH,macbeth,2653
+5,BRUTUS,j_caesar,2622
+6,ROMEO,r_and_j,2461
+7,CLEOPATRA,a_and_c,2377
+8,JULIET,r_and_j,2220
+9,PORTIA,merchant,2151
+10,KING CLAUDIUS,hamlet,1927
+11,CASSIUS,j_caesar,1822
+12,FRIAR LAURENCE,r_and_j,1519
+13,OCTAVIUS CAESAR,a_and_c,1380
+14,SHYLOCK,merchant,1312
+15,BASSANIO,merchant,1249
+16,ANTONY,j_caesar,1247
+17,DESDEMONA,othello,1221
+18,LORD POLONIUS,hamlet,1203
+19,DOMITIUS ENOBARBUS,a_and_c,1190
+20,MERCUTIO,r_and_j,1080
+21,CAPULET,r_and_j,1045
+22,Nurse,r_and_j,1012
+23,HORATIO,hamlet,954
+24,LADY MACBETH,macbeth,913
+25,CASSIO,othello,910
+26,OBERON,dream,883
+27,THESEUS,dream,872
+28,HELENA,dream,839
+29,EMILIA,othello,816
+30,BOTTOM,dream,794
+31,MALCOLM,macbeth,757
+32,PUCK,dream,719
+33,LAUNCELOT,merchant,702
+34,LAERTES,hamlet,696
+35,GRATIANO,merchant,679
+36,LYSANDER,dream,676
+37,LORENZO,merchant,672
+38,ANTONIO,merchant,661
+39,TITANIA,dream,638
+40,HERMIA,dream,630
+41,MACDUFF,macbeth,626
+42,BENVOLIO,r_and_j,605
+43,OPHELIA,hamlet,539
+44,QUEEN GERTRUDE,hamlet,537
+45,DEMETRIUS,dream,495
+46,BRABANTIO,othello,494
+47,CAESAR,j_caesar,481
+48,CASCA,j_caesar,476
+49,ROSS,macbeth,469
+50,POMPEY,a_and_c,458
+51,LADY CAPULET,r_and_j,450
+52,MOROCCO,merchant,413
+53,SALARINO,merchant,376
+54,BANQUO,macbeth,370
+55,Ghost,hamlet,368
+56,RODERIGO,othello,365
+57,CHARMIAN,a_and_c,344
+58,PORTIA,j_caesar,335
+59,First Clown,hamlet,324
+60,QUINCE,dream,323
+61,NERISSA,merchant,313
+62,JESSICA,merchant,303
+63,ROSENCRANTZ,hamlet,301
+64,PRINCE,r_and_j,296
+65,PARIS,r_and_j,287
+66,LODOVICO,othello,254
+67,LENNOX,macbeth,251
+68,Messenger,a_and_c,245
+69,ARRAGON,merchant,244
+70,DUNCAN,macbeth,244
+71,DUKE OF VENICE,othello,237
+72,SALANIO,merchant,220
+73,DUKE,merchant,218
+74,Pyramus,dream,210
+75,MARCELLUS,hamlet,204
+76,First Witch,macbeth,197
+77,LEPIDUS,a_and_c,197
+78,MONTANO,othello,195
+79,Player King,hamlet,195
+80,MENAS,a_and_c,194
+81,First Player,hamlet,193
+82,AGRIPPA,a_and_c,186
+83,OSRIC,hamlet,172
+84,DECIUS BRUTUS,j_caesar,163
+85,MONTAGUE,r_and_j,163
+86,GOBBO,merchant,155
+87,OCTAVIUS,j_caesar,155
+88,EGEUS,dream,151
+89,EROS,a_and_c,151
+90,Porter,macbeth,145
+91,Prologue,dream,143
+92,Doctor,macbeth,142
+93,Sergeant,macbeth,137
+94,TYBALT,r_and_j,137
+95,GUILDENSTERN,hamlet,137
+96,DOLABELLA,a_and_c,137
+97,LADY MACDUFF,macbeth,131
+98,HECATE,macbeth,130
+99,HIPPOLYTA,dream,129
+100,TITINIUS,j_caesar,129
+101,Player Queen,hamlet,128
+102,SCARUS,a_and_c,127
+103,MESSALA,j_caesar,126
+104,MARULLUS,j_caesar,125
+105,BIANCA,othello,119
+106,Servant,j_caesar,118
+107,Soldier,a_and_c,117
+108,VENTIDIUS,a_and_c,115
+109,PETER,r_and_j,112
+110,Thisbe,dream,112
+111,MECAENAS,a_and_c,111
+112,OCTAVIA,a_and_c,110
+113,SAMPSON,r_and_j,110
+114,Fairy,dream,107
+115,ALEXAS,a_and_c,106
+116,Soothsayer,a_and_c,103
+117,CALPURNIA,j_caesar,103
+118,BALTHASAR,r_and_j,102
+119,FLAVIUS,j_caesar,102
