@@ -72,8 +72,7 @@ def generate_similarity_index(documents, max_posts, model=models.LsiModel):
     tfidf = models.tfidfmodel.TfidfModel(corpus=corpus)
     topic_model = model(tfidf[corpus], id2word=dictionary, num_topics=5)
     for topic in topic_model.print_topics():
-        print topic
-        print ''
+        print '\n' + topic
     return similarities.MatrixSimilarity(topic_model[tfidf[corpus]],
                                          num_best=max_posts + 1)
 
@@ -118,19 +117,12 @@ def add_related_posts(generator, default_max_related_posts=5):
     similarity_scores = recommend_articles(generator.articles, max_posts)
     articles_by_path = {art.source_path: art for art in generator.articles}
     for article in generator.articles:
-        related_posts = sorted(similarity_scores[article.source_path],
-                               key=lambda x: -x[1])
+        related_posts = similarity_scores[article.source_path]
         article.related_posts = []
         article.score = {}
-        for i, entry in enumerate(related_posts):
-            if i >= max_posts:
-                break
-            source_path, similarity = entry
-            try:
-                related_post = articles_by_path[source_path]
-                article.score[unicode(related_post.source_path)] = similarity
-            except KeyError:
-                print "can't find article {}".format(source_path)
+        for source_path, similarity in related_posts:
+            related_post = articles_by_path[source_path]
+            article.score[related_post.source_path] = similarity
             article.related_posts.append(related_post)
 
 
