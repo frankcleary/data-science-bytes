@@ -19,10 +19,11 @@ STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',
                 'extra/timeseries.txt',
+                'talks/',
                 'data/']
 EXTRA_PATH_METADATA = {
     'extra/favicon2.png': {'path': 'favicon.ico'},
-}
+    }
 
 TIMEZONE = 'America/Los_Angeles'
 
