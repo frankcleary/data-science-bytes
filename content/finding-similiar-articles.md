@@ -18,8 +18,8 @@ blog I included the score of each similar article along with the link. The sourc
 
     :::python
     """
-    Pelican plugin that finds articles about similar articles
-    =========================================================
+    Pelican plugin that finds articles about similar topics
+    =======================================================
     Frank Cleary - www.datasciencebytes.com - frank@frankcleary.com
     
     This plugin uses the gensim library to find articles about similar topics to
@@ -46,15 +46,16 @@ blog I included the score of each similar article along with the link. The sourc
     
     Some parts of this implementation relating to pelican are based on:
     https://github.com/getpelican/pelican-plugins/tree/master/related_posts
-    """    
+    """
+    
     from collections import defaultdict
     
-	from bs4 import BeautifulSoup
-	import nltk
-	from pelican import signals
-	from gensim import corpora, models, similarities
-
-
+    from bs4 import BeautifulSoup
+    import nltk
+    from pelican import signals
+    from gensim import corpora, models, similarities
+    
+    
     def filter_dictionary(raw_dictionary,
                           stop_words=nltk.corpus.stopwords.words('english'),
                           min_count=2):
@@ -75,7 +76,7 @@ blog I included the score of each similar article along with the link. The sourc
         raw_dictionary.compactify()
     
     
-    def generate_similarity_index(documents, model=models.LsiModel):
+    def generate_similarity_index(documents, max_posts, model=models.LsiModel):
         """Return gensim.MatrixSimilarity of text documents using the supplied
         model.
     
@@ -87,13 +88,16 @@ blog I included the score of each similar article along with the link. The sourc
         dictionary = corpora.Dictionary(documents)
         filter_dictionary(dictionary)
         corpus = [dictionary.doc2bow(doc) for doc in documents]
-        topic_model = model(corpus, id2word=dictionary, num_topics=5)
+        tfidf = models.tfidfmodel.TfidfModel(corpus=corpus)
+        topic_model = model(tfidf[corpus], id2word=dictionary, num_topics=5)
         for topic in topic_model.print_topics():
-            print topic
-        return similarities.MatrixSimilarity(topic_model[corpus])
+            print '\n' + topic
+        return similarities.MatrixSimilarity(topic_model[tfidf[corpus]],
+                                             num_best=max_posts + 1)
     
     
-    def recommend_articles(articles, tokenizer=nltk.RegexpTokenizer(r'\w+')):
+    def recommend_articles(articles, max_posts,
+                           tokenizer=nltk.RegexpTokenizer(r'\w+')):
         """Return a dictionary keyed by article source_path whose values are a
         sorted (descending) list of (article.source_path, similarity_score) tuples
         for every other article.
@@ -104,16 +108,13 @@ blog I included the score of each similar article along with the link. The sourc
         :param tokenizer: an nltk tokenizer used to split article text into words
         :return: dictionary of similarity scores of other articles to keyed article
         """
-        article_texts = [BeautifulSoup(article.content).get_text().lower()
+        article_texts = [BeautifulSoup(article.content).body.get_text().lower()
                          for article in articles]
         documents = [tokenizer.tokenize(text) for text in article_texts]
-        index = generate_similarity_index(documents)
+        index = generate_similarity_index(documents, max_posts)
         similarity_scores = defaultdict(list)
         for article, sims in zip(articles, index):
-            sims = sorted(enumerate(sims), key=lambda item: -item[1])
-            for id, score in sims:
-                if article == articles[id]:
-                    continue
+            for id, score in sims[1:]:
                 similarity_scores[article.source_path].append(
                     (articles[id].source_path, score)
                 )
@@ -132,22 +133,15 @@ blog I included the score of each similar article along with the link. The sourc
         """
         max_posts = generator.settings.get("MAX_RELATED_POSTS",
                                            default_max_related_posts)
-        similarity_scores = recommend_articles(generator.articles)
+        similarity_scores = recommend_articles(generator.articles, max_posts)
         articles_by_path = {art.source_path: art for art in generator.articles}
         for article in generator.articles:
-            related_posts = sorted(similarity_scores[article.source_path],
-                                   key=lambda x: -x[1])
+            related_posts = similarity_scores[article.source_path]
             article.related_posts = []
             article.score = {}
-            for i, entry in enumerate(related_posts):
-                if i >= max_posts:
-                    break
-                source_path, similarity = entry
-                try:
-                    related_post = articles_by_path[source_path]
-                    article.score[unicode(related_post.source_path)] = similarity
-                except KeyError:
-                    print "can't find article {}".format(source_path)
+            for source_path, similarity in related_posts:
+                related_post = articles_by_path[source_path]
+                article.score[related_post.source_path] = similarity
                 article.related_posts.append(related_post)
     
     
