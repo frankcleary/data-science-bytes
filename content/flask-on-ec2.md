@@ -14,7 +14,7 @@ Tags: python, AWS
 1. In step 3, select the Ubuntu Server 14.04 LTS (HVM) AMI (ami-29ebb519) instead of the Amazon Linux. The exact versions may change with time.
 2. In step 7b, configure the security groups as shown below. This setting allows access to port 80 (HTTP) from anywhere, and ssh access only from your IP address.
 
-<img src="/extra/images/aws_security_group.png" title="AWS security rules">
+<img src="/extra/images/flaskec2/aws_security_group.png" title="AWS security rules">
 
 #### 2. Follow Amazon's instructions to connect to your instance [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html)
 
@@ -31,7 +31,7 @@ Now that we've connected to the instance, it's time to install some of the progr
 
 If you point your browser at your instance's public DNS name (see "connect to your instance" link above) you should see some version of the apache server's assuring "It works!" page.
 
-<img src="/extra/images/itworks.png" title="apache it works!">
+<img src="/extra/images/flaskec2/itworks.png" title="apache it works!">
 
 #### 2. Install Flask using the pip tool (which also needs to be installed).
 
@@ -55,7 +55,7 @@ To verify our operation is working, create a simple `index.html` file.
 
 You should now see "Hello World" displayed if you navigate to `(your instance public DNS)/flaskapp` in your browser.
 
-<img src="/extra/images/helloworldhtml.png" title="Hello World index.html">
+<img src="/extra/images/flaskec2/helloworldhtml.png" title="Hello World index.html">
 
 # 3. Running a simple flask app
 
@@ -99,7 +99,7 @@ The apache server displays html pages by default but to serve dynamic content fr
         Allow from all
     </Directory>
 
-<img src="/extra/images/apacheconf.png" title="Apache wsgi config">
+<img src="/extra/images/flaskec2/apacheconf.png" title="Apache wsgi config">
 
 #### 4. Restart the webserver.
 
@@ -112,7 +112,7 @@ Use this command to restart the server with the new configuration
 
 If you navigate your browser to your EC2 instance's public DNS again, you should see the text returned by the hello_world function of our app, "Hello from Flask!"
 
-<img src="/extra/images/hellofromflask.png" title="Hello from flask">
+<img src="/extra/images/flaskec2/hellofromflask.png" title="Hello from flask">
 
 Our server is now running and ready to crunch some data (if something isn't working, try checking the log file in `/var/log/apache2/error.log`).
 
@@ -134,7 +134,7 @@ This `count_me()` function will return anything after the `countme/` portion of 
     :::console
     $ sudo apachectl restart
 
-<img src="/extra/images/countmebasic.png" title="Basic flask function">
+<img src="/extra/images/flaskec2/countmebasic.png" title="Basic flask function">
 
 #### 2. Process information
 
@@ -159,7 +159,7 @@ Restart the server and view the results:
     :::console
     $ sudo apachectl restart
 
-<img src="/extra/images/countme.png" title="Flask word counter">
+<img src="/extra/images/flaskec2/countme.png" title="Flask word counter">
 
 * Note that it is bad practice to format html responses inside these functions, [templates](http://flask.pocoo.org/docs/0.10/templating/) should generally be used instead.
 * The entire `count_me()` function could be written in one logical line:
