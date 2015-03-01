@@ -5,7 +5,7 @@ Tags: python, AWS
 
 # 1. Starting up an EC2 instance
 
-[Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a flask server on an Amazon Web Services EC2 instance. The server will respond to URLs with data from a SQL database. In a later post I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.
+[Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a flask server on an Amazon Web Services EC2 instance. In [another post]({filename}/flask-sql.md) we'll set up the server to respond to requests with data from a SQL database. In a later post I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.
 
 #### 1. Launch an EC2 instance.
 
@@ -170,4 +170,4 @@ Restart the server and view the results:
 
 # Using Flask to query a SQL database
 
-See part 2 LINK ME for a description of how to connect flask to a SQL database.
+See [this post]({filename}/flask-sql.md) for a description of how to connect flask to a SQL database.
