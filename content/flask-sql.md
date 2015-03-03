@@ -81,7 +81,7 @@ Add the following lines to `flaskapp.py` (see [earlier post]({filename}/flask-on
 Add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at ``(your public DNS)/viewdb` should show the entire database.
 
     :::python
-    @app.route("/viewdb")
+    @app.route("/viewdb")sf
     def viewdb():
         rows = execute_query("SELECT * FROM natlpark")
         return '<br>'.join(str(row) for row in rows)
@@ -95,7 +95,8 @@ To allow for queries on state, add the following to `flaskapp.py` and restart th
     :::python
     @app.route("/state/<state>")
     def sortby(state):
-        rows = execute_query("SELECT * FROM natlpark WHERE state = ?", [state])
+        rows = execute_query("SELECT * FROM natlpark WHERE state = ?",
+                             [state.title()])
         return '<br>'.join(str(row) for row in rows)
 
 <img src="/extra/images/flasksql/statequery.png" title="Query SQL with flask">
