@@ -51,7 +51,7 @@ This script populates a database with the data from the file:
 
 ### 3. Accessing the database from Flask
 
-Add the following lines to `flaskapp.py` (see [earlier post]({filename}/flask-on-ec2.md)). This code handles correctly managing connections to the database and provides a convenient query method.
+Add the following lines to `flaskapp.py` (see [part 1]({filename}/flask-on-ec2.md)). This code handles managing connections to the database and provides a convenient query method.
 
     :::python
     import csv
@@ -89,27 +89,42 @@ Add the following lines to `flaskapp.py` (see [earlier post]({filename}/flask-on
 Add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at `(your public DNS)/viewdb` should show the entire database.
 
     :::python
-    @app.route("/viewdb")sf
+    @app.route("/viewdb")
     def viewdb():
-        rows = execute_query("SELECT * FROM natlpark")
+        rows = execute_query("""SELECT * FROM natlpark""")
         return '<br>'.join(str(row) for row in rows)
 
 <img src="/extra/images/flasksql/viewdb.png" title="View SQL with flask">
 
 ### 5. Add a query url request handler
 
-To allow for queries on state, add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at `(your public DNS)/state/(field)` will return a list of all national parks in that state.
+To allow for queries on state, add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at `(your public DNS)/state/{state-name}` will return a list of all national parks in that state.
 
     :::python
     @app.route("/state/<state>")
     def sortby(state):
-        rows = execute_query("SELECT * FROM natlpark WHERE state = ?",
+        rows = execute_query("""SELECT * FROM natlpark WHERE state = ?""",
                              [state.title()])
         return '<br>'.join(str(row) for row in rows)
 
 <img src="/extra/images/flasksql/statequery.png" title="Query SQL with flask">
 
 ### 6. Note on cross site requests
+
+Later in this series we'll want to query our app from a D3.js graph served from another site. To instruct our Flask server to respond to these requests add the following line to the `/etc/apache2/sites-enabled/000-default.conf`, right under `<Directory flaskapp>`:
+
+    Header set Access-Control-Allow-Origin "*"
+
+Your apache config should now have a block that looks like this:
+
+    :::text
+    <Directory flaskapp>
+        Header set Access-Control-Allow-Origin "*"
+        WSGIProcessGroup flaskapp
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
 
 ##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 

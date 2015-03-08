@@ -33,12 +33,12 @@ def execute_query(query, args=()):
 
 @app.route("/viewdb")
 def viewdb():
-    rows = execute_query("SELECT * FROM natlpark")
+    rows = execute_query("""SELECT * FROM natlpark""")
     return '<br>'.join(str(row) for row in rows)
 
 @app.route("/state/<state>")
 def state_query(state):
-    rows = execute_query("SELECT * FROM natlpark WHERE state = ?", 
+    rows = execute_query("""SELECT * FROM natlpark WHERE state = ?""",
                          [state.title()])
     return '<br>'.join(str(row) for row in rows)
 
