@@ -19,6 +19,7 @@ EXTRA_PATH_METADATA = {
     'extra/favicon2.png': {'path': 'favicon.ico'},
 }
 
+READERS = {'html': None}
 MARKUP = ('md', 'ipynb')
 PLUGIN_PATHS = ["similar_posts", "./plugins"]
 PLUGINS = ['similar_posts', 'ipynb']

@@ -7,6 +7,7 @@ SITENAME = u'Data Science Bytes'
 SITEURL = 'http://www.datasciencebytes.com'
 THEME = 'themes/notmyidea'
 
+READERS = {'html': None}
 MARKUP = ('md', 'ipynb')
 PLUGIN_PATHS = ["similar_posts", "./plugins"]
 PLUGINS = ['similar_posts', 'ipynb']
