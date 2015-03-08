@@ -100,3 +100,5 @@ To allow for queries on state, add the following to `flaskapp.py` and restart th
         return '<br>'.join(str(row) for row in rows)
 
 <img src="/extra/images/flasksql/statequery.png" title="Query SQL with flask">
+
+### 6. Note on cross site requests
