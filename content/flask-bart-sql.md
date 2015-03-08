@@ -10,13 +10,13 @@ Tags: python, AWS, SQL
 1. **Getting csv data from requests to a SQL backed Flask app**
 1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
 
-In this post I'll describe a simple flask app that receives requests from a D3.js plotting script  and returns csv format data from a SQL database. See [Part 1 - Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md) and [Part 2 -  Using Flask to answer SQL queries]({filename}/flask-sql.md) for background information.
+In this post I'll describe a Flask app that receives requests from a D3.js plotting script  and returns csv format data from a SQL database. See [part 1]({filename}/flask-on-ec2.md) and [part 2]({filename}/flask-sql.md) for background information.
 
 # The data
 
 <img src="/extra/images/flaskbart/graph.png" title="Bart data graph">
 
-This is what the end result looks like on the front end. Any selection for what data to graph gets sent to the Flask server and the selected data is returned from the SQL database.
+Above is what our end result looks like when plotted. Any selection for what data to graph gets sent to the Flask server and the selected data is returned from the SQL database.
 
 The data is acquired from the [BART API](http://api.bart.gov/), after a bit of xml parsing I create csv files with data about the each train's ETD, destination, etc (see [`plza.csv`](/data/plza.csv), [related post]({filename}/bart-reshape-plot.ipynb)).
 
@@ -124,7 +124,7 @@ Creating an index on the variables we will be querying against is key for the pe
 
 # Adding a Flask request route
 
-To return data for the graph, we need to select data points from a given station for a given direction of train on a given day of the week at a given time, and make a histogram of the ETD values for those data points. Add the following function to Flask app from [part 2]({filename}/flask-sql.md) to return this data from our SQL database. You can point your browser at `(my public DNS)/?dest=Fremont&time=12:17&station=plza&day=0` to get csv formatted data ready to pass into D3.js for graphing.
+To return data for the graph, we need to select data points from trains arriving at a given station in a given direction on a given day of the week at a given time, and make a histogram of the ETD values for those data points. Add the following function to Flask app from [part 2]({filename}/flask-sql.md) to return this data from our SQL database. You can point your browser at `(my public DNS)/?dest=Fremont&time=12:17&station=plza&day=0` to get csv formatted data ready to pass into D3.js for graphing.
 
     :::python
     @app.route("/")
