@@ -154,7 +154,7 @@ To return data for the graph, we need to select data points from trains arriving
         )
         str_rows = [','.join(map(str, row)) for row in result]
         query_time = time.time() - start_time
-        print("executed query in %s" % query_time)
+        logging.info("executed query in %s" % query_time)
         cur.close()
         header = 'etd,count\n'
         return header + '\n'.join(str_rows)
