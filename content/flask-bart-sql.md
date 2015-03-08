@@ -1,4 +1,4 @@
-Title: Using Flask to power a D3.js plot with a SQL database
+Title: Getting csv data from requests to a SQL backed Flask app
 Date: 3-3-2015
 Category: Tutorials
 Tags: python, AWS, SQL

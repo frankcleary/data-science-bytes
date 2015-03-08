@@ -3,6 +3,13 @@ Date: 2-24-2015
 Category: Tutorials
 Tags: python, AWS
 
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
+
 # 1. Starting up an EC2 instance
 
 [Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a flask server on an Amazon Web Services EC2 instance. In [another post]({filename}/flask-sql.md) we'll set up the server to respond to requests with data from a SQL database. In a later post I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.
