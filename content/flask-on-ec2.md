@@ -10,6 +10,8 @@ Tags: python, AWS, Flask
 1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
 1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
 
+Source code for a [basic Flask app](https://github.com/frankcleary/data-science-bytes/tree/master/basic-flask-app)
+
 # 1. Starting up an EC2 instance
 
 [Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a Flask server on an Amazon Web Services EC2 instance. In [part 2]({filename}/flask-sql.md) we'll set up the server to respond to requests with data from a SQL database. In a parts [3]({filename}/flask-bart-sql.md) and [4]({filename}/flask-bart-graphing.md) I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.

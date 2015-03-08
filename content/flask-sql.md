@@ -12,6 +12,8 @@ Tags: python, AWS, SQL
 
 In an [part 1]({filename}/flask-on-ec2.md) I describe how to set up a Flask service on an AWS EC2 instance. In this post I'll set up the server to respond to queries against a SQL database.
 
+Source code for a [basic Flask app](https://github.com/frankcleary/data-science-bytes/tree/master/basic-flask-app)
+
 # Creating a database
 
 ### 1. The data
