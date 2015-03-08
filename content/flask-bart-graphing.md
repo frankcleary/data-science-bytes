@@ -32,7 +32,6 @@ Here is the code that generates the plot using D3.js.
     d3.select("#dest").on("input", make_graph);
     d3.select("#day_select").on("input", make_graph);
     d3.select("#station_select").on("input", make_graph);
-    d3.select("#day_select").on("input", make_graph);
     d3.select("#time").on("input", make_graph);
 
     var margin = {top: 20, right: 20, bottom: 100, left: 60};
