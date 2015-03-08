@@ -5,7 +5,7 @@ Tags: python, AWS
 
 ##### Four Part series on creating a D3.js graph powered by Flask and SQL
 
-1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. **Running a Flask app on AWS EC2**
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
 1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
 1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
@@ -177,4 +177,11 @@ Restart the server and view the results:
 
 # Using Flask to query a SQL database
 
-See [this post]({filename}/flask-sql.md) for a description of how to connect flask to a SQL database.
+See [Part 2]({filename}/flask-sql.md) for a description of how to connect flask to a SQL database.
+
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. **Running a Flask app on AWS EC2**
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)

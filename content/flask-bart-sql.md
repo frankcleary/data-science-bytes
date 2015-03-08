@@ -3,6 +3,13 @@ Date: 3-3-2015
 Category: Tutorials
 Tags: python, AWS, SQL
 
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. **Getting csv data from requests to a SQL backed Flask app**
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
+
 In this post I'll describe a simple flask app that receives requests from a D3.js plotting script  and returns csv format data from a SQL database. See [Part 1 - Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md) and [Part 2 -  Using Flask to answer SQL queries]({filename}/flask-sql.md) for background information.
 
 # The data
@@ -154,4 +161,11 @@ Here is an example query and result, along with firefox inspector output showing
 
 <img src="/extra/images/flaskbart/queryresult.png" title="bart SQL query result">
 
-This is the data our D3.js visualization will act on in Part 4 LINK HERE.
+This is the data our D3.js visualization will act on in [Part 4]({filename}/flask-bart-graphing.md).
+
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. **Getting csv data from requests to a SQL backed Flask app**
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)

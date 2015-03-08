@@ -3,7 +3,14 @@ Date: 2-28-2015
 Category: Tutorials
 Tags: python, AWS, SQL
 
-In an [earlier post]({filename}/flask-on-ec2.md) I describe how to set up a flask service on an AWS EC2 instance. In this post I'll set up the server to respond to queries against a SQL database.
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. **Using Flask to answer SQL queries**
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
+
+In an [Part 1]({filename}/flask-on-ec2.md) I describe how to set up a flask service on an AWS EC2 instance. In this post I'll set up the server to respond to queries against a SQL database.
 
 # Creating a database
 
@@ -102,3 +109,10 @@ To allow for queries on state, add the following to `flaskapp.py` and restart th
 <img src="/extra/images/flasksql/statequery.png" title="Query SQL with flask">
 
 ### 6. Note on cross site requests
+
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. **Using Flask to answer SQL queries**
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)

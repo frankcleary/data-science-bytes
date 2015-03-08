@@ -3,6 +3,13 @@ Date: 3-7-2015
 Category: Tutorials
 Tags: python, AWS, SQL, D3
 
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. **A D3.js plot powered by a SQL database**
+
 In [Part 3]({filename}/flask-bart-sql.md) of this tutorial I covered setting up a SQL database queryable via an endpoint provided by Flask. Here in Part 4 I'll go over the actual D3.js code to visualize the data and update the graph based on user input. One of the great things about this architecture is that the static content (html, css and javascript) can be hosted just about anywhere and is decoupled from the backend resource that provides the data (in this case a Flask site running on EC2). By using a DNS to point to the backend, you're free to change the the backend however you like, scaling as usage scales, without altering the visualization code.
 
 The end result is shown below - play around with the selection boxes to see the data change (note that some combinations of station, day and destination will not produce any data). One of the original motivations for this project was to answer the question "What is the latest I can leave work while still having a 90% probability of making my intended train?"
@@ -139,3 +146,10 @@ Here is the code that generates the plot using D3.js.
 # Conclusion
 
 In this series of posts I've shown how to set up a Flask server on EC2, enable that server to respond to queries with data from a SQL database, populate that database with useful information and finally write a D3.js visualization using data provided by the Flask server.
+
+##### Four Part series on creating a D3.js graph powered by Flask and SQL
+
+1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
+1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
+1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
+1. **A D3.js plot powered by a SQL database**
