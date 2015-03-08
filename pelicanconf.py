@@ -18,6 +18,7 @@ STATIC_EXCLUDE_SOURCES = False
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',
+                'extra/bart-graph',
                 'extra/timeseries.txt',
                 'talks/',
                 'data/']
@@ -47,7 +48,7 @@ TRANSLATION_FEED_ATOM = None
 # Blogroll
 LINKS = (('Recommended Books', SITEURL + '/recommended-books'),
          ('Recommended Videos', SITEURL + '/recommended-videos'),
-         ('Transitioning to Data Science', SITEURL + 
+         ('Transitioning to Data Science', SITEURL +
           '/bytes/2014/11/01/how-to-transition-from-phd-student-to-data-scientist/'),)
 
 # Social widget
@@ -60,4 +61,3 @@ TWITTER_USERNAME = 'DSBytes'
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
-
