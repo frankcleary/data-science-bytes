@@ -1,7 +1,7 @@
 Title: Running a Flask app on AWS EC2
 Date: 2-24-2015
 Category: Tutorials
-Tags: python, AWS
+Tags: python, AWS, Flask
 
 ##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
@@ -12,7 +12,7 @@ Tags: python, AWS
 
 # 1. Starting up an EC2 instance
 
-[Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a flask server on an Amazon Web Services EC2 instance. In [another post]({filename}/flask-sql.md) we'll set up the server to respond to requests with data from a SQL database. In a later post I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.
+[Flask](http://flask.pocoo.org/) is a web framework for python, meaning that it provides a simple interface for dynamically generating responses to web requests. In this tutorial I set up a Flask server on an Amazon Web Services EC2 instance. In [part 2]({filename}/flask-sql.md) we'll set up the server to respond to requests with data from a SQL database. In a parts [3]({filename}/flask-bart-sql.md) and [4]({filename}/flask-bart-graphing.md) I'll show how to use this server to provide data for a D3.js plot where the user can request specific data to be plotted.
 
 #### 1. Launch an EC2 instance.
 
@@ -46,7 +46,7 @@ If you point your browser at your instance's public DNS name (see "connect to yo
     $ sudo apt-get install python-pip
     $ sudo pip install flask
 
-#### 3. Create a directory for our flask app.
+#### 3. Create a directory for our Flask app.
 
 We'll create a directory in our home directory to work in, and link to it from the site-root defined in apache's configuration (`/var/www/html` by defualt, see `/etc/apache2/sites-enabled/000-default.conf` for the current value).
 
@@ -64,11 +64,11 @@ You should now see "Hello World" displayed if you navigate to `(your instance pu
 
 <img src="/extra/images/flaskec2/helloworldhtml.png" title="Hello World index.html">
 
-# 3. Running a simple flask app
+# 3. Running a simple Flask app
 
 #### 1. Create an app.
 
-We'll use the simple "Hello world" [example](http://flask.pocoo.org/docs/0.10/quickstart/) from the flask documentation. Put the following content in a file named `flaskapp.py`:
+We'll use the simple "Hello world" [example](http://flask.pocoo.org/docs/0.10/quickstart/) from the Flask documentation. Put the following content in a file named `flaskapp.py`:
 
     :::python
     from flask import Flask
@@ -157,7 +157,7 @@ Let's make our `count_me()` function a little more interesting. Modify flaskapp.
         input_counter = Counter(input_str)
         response = []
         for letter, count in input_counter.most_common():
-            response.append('"{}"": {}'.format(letter, count))
+            response.append('"{}": {}'.format(letter, count))
         return '<br>'.join(response)
 
 
@@ -177,7 +177,7 @@ Restart the server and view the results:
 
 # Using Flask to query a SQL database
 
-See [Part 2]({filename}/flask-sql.md) for a description of how to connect flask to a SQL database.
+See [Part 2]({filename}/flask-sql.md) for a description of how to connect Flask to a SQL database.
 
 ##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 

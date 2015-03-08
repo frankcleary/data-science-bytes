@@ -10,13 +10,13 @@ Tags: python, AWS, SQL
 1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
 1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
 
-In an [Part 1]({filename}/flask-on-ec2.md) I describe how to set up a flask service on an AWS EC2 instance. In this post I'll set up the server to respond to queries against a SQL database.
+In an [part 1]({filename}/flask-on-ec2.md) I describe how to set up a Flask service on an AWS EC2 instance. In this post I'll set up the server to respond to queries against a SQL database.
 
 # Creating a database
 
 ### 1. The data
 
-We'll use [`sqlite3`](https://docs.python.org/2/library/sqlite3.html) to provide an interface from python to SQL. For this example we'll create a simple database of national parks. The data is [here](/data/nationalparks.csv), originally from [wikipedia](http://en.wikipedia.org/wiki/List_of_areas_in_the_United_States_National_Park_System#National_parks).
+We'll use [`sqlite3`](https://docs.python.org/2/library/sqlite3.html) to provide an interface from python to SQL. For this example we'll create a simple database of national parks, the data is [here](/data/nationalparks.csv), originally from [wikipedia](http://en.wikipedia.org/wiki/List_of_areas_in_the_United_States_National_Park_System#National_parks).
 
 A look at the data:
 
@@ -38,12 +38,13 @@ This script populates a database with the data from the file:
 
     conn = sqlite3.connect('natlpark.db')
     cur = conn.cursor()
-    cur.execute('DROP TABLE IF EXISTS natlpark')
-    cur.execute('CREATE TABLE natlpark (name text, state text, year integer, area float)')
+    cur.execute("""DROP TABLE IF EXISTS natlpark""")
+    cur.execute("""CREATE TABLE natlpark
+                (name text, state text, year integer, area float)""")
 
     with open('nationalparks.csv', 'r') as f:
         reader = csv.reader(f.readlines()[1:])  # exclude header line
-        cur.executemany('INSERT INTO natlpark VALUES (?,?,?,?)',
+        cur.executemany("""INSERT INTO natlpark VALUES (?,?,?,?)""",
                         (row for row in reader))
     conn.commit()
     conn.close()
