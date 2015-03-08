@@ -3,7 +3,7 @@ Date: 3-3-2015
 Category: Tutorials
 Tags: python, AWS, SQL
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
@@ -124,24 +124,24 @@ Creating an index on the variables we will be querying against is key for the pe
 
 # Adding a Flask request route
 
-To return data for the graph, we need to select data points from a given station for a given direction of train on a given day of the week at a given time, and make a histogram of the ETD values for those data points. Add the following function to Flask app from [part 2]({filename}/flask-sql.md) to return this data from our SQL database. You can point your browser at (my public DNS)/?dest=Fremont&time=12:17&station=plza&day=0 to get csv formatted data ready to pass into D3.js for graphing.
+To return data for the graph, we need to select data points from a given station for a given direction of train on a given day of the week at a given time, and make a histogram of the ETD values for those data points. Add the following function to Flask app from [part 2]({filename}/flask-sql.md) to return this data from our SQL database. You can point your browser at `(my public DNS)/?dest=Fremont&time=12:17&station=plza&day=0` to get csv formatted data ready to pass into D3.js for graphing.
 
     :::python
     @app.route("/")
     def print_data():
         """Respond to a query of the format:
-        myapp/?dest=Fremont&time=12:17&station=plza&day=0
+        myapp/?dest=Fremont&time=600&station=plza&day=0
         with ETD data for the time and location specified in the query"""
         start_time = time.time()
         cur = get_db().cursor()
-        hour, minute = request.args.get('time', '').split(':')
+        try:
+            minute_of_day = int(request.args.get('time'))
+        except ValueError:
+            return "Time must be an integer"
         station = request.args.get('station')
+        print minute_of_day
         day = request.args.get('day')
         dest = request.args.get('dest')
-        try:
-            minute_of_day = int(hour) + 60 * int(minute)
-        except ValueError:
-            return "Time formatted incorrectly"
         result = execute_query(
             """SELECT etd, count(*)
                FROM etd
@@ -152,18 +152,18 @@ To return data for the graph, we need to select data points from a given station
         )
         str_rows = [','.join(map(str, row)) for row in result]
         query_time = time.time() - start_time
-        logging.info("executed query in %s" % query_time)
+        print("executed query in %s" % query_time)
         cur.close()
         header = 'etd,count\n'
         return header + '\n'.join(str_rows)
 
-Here is an example query and result, along with firefox inspector output showing the csv format more clearly:
+Here is an example query and result, along with Firefox inspector output showing the csv format more clearly:
 
 <img src="/extra/images/flaskbart/queryresult.png" title="bart SQL query result">
 
 This is the data our D3.js visualization will act on in [Part 4]({filename}/flask-bart-graphing.md).
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)

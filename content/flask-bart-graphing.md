@@ -3,7 +3,7 @@ Date: 3-7-2015
 Category: Tutorials
 Tags: python, AWS, SQL, D3
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
@@ -143,11 +143,100 @@ Here is the code that generates the plot using D3.js.
 
     make_graph();
 
+# HTML source
+
+    :::html
+    <!DOCTYPE html>
+    <meta charset="utf-8">
+    <head>
+      <link rel="stylesheet" type="text/css" href="graph.css">
+    </head>
+    <body>
+    <p>
+      <label for="station_select"
+              style="display: inline-block; width: 140px; text-align: right">
+        Station =
+      </label>
+      <select id="station_select" onchange="update_url()">
+        <option value="plza">El Cerrito Plaza</option>
+        <option value="mont">Montgomery</option>
+      </select>
+      <label for="day_select"
+              style="display: inline-block; width: 140px; text-align: right">
+        Weekday =
+      </label>
+      <select id="day_select" onchange="update_url()">
+        <option value="0">Weekday</option>
+        <option value="1">Saturday</option>
+        <option value="2">Sunday</option>
+      </select>
+      <label for="dest"
+             style="display: inline-block; width: 140px; text-align: right">
+             Destination =
+      </label>
+      <select id="dest" onchange="update_url()">
+        <option value="Fremont">Fremont</option>
+        <option value="Richmond">Richmond</option>
+        <option value="Millbrae">Millbrae</option>
+        <option value="Pittsburg/Bay Point">Pittsburg/Bay Point</option>
+        <option value="Dublin/Pleasanton">Dublin/Pleasanton</option>
+        <option value="SF Airport">SF Airport</option>
+        <option value="SFO/Millbrae">SFO/Millbrae</option>
+      </select>
+    </p>
+    <p>
+      <label for="time"
+             style="display: inline-block; align: left; width: 140px; text-align: right">
+             Time = <span id="prettyTime">...</span>
+           </label>
+      <input type="range" id="time" min="240" max="1440" style="width:600px" value="460">
+    </p>
+    <p>
+        Click slider and use arrow keys to adjust time.
+    </p>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="graph.js"></script>
+
+# CSS source
+
+    :::css
+    body {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bar {
+      fill: steelblue;
+    }
+
+    .bar:hover {
+      fill: brown;
+    }
+
+    .tick {
+      width: 2px
+    }
+
+    .axis {
+      font: 20px sans-serif;
+      font-weight: bold;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      stroke-width: 2;
+      shape-rendering: crispEdges;
+    }
+
+
 # Conclusion
 
 In this series of posts I've shown how to set up a Flask server on EC2, enable that server to respond to queries with data from a SQL database, populate that database with useful information and finally write a D3.js visualization using data provided by the Flask server.
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)

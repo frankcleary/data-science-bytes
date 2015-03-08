@@ -3,7 +3,7 @@ Date: 2-28-2015
 Category: Tutorials
 Tags: python, AWS, SQL
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. **Using Flask to answer SQL queries**
@@ -85,7 +85,7 @@ Add the following lines to `flaskapp.py` (see [earlier post]({filename}/flask-on
 
 ### 4. Add a request handler to show the database
 
-Add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at ``(your public DNS)/viewdb` should show the entire database.
+Add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at `(your public DNS)/viewdb` should show the entire database.
 
     :::python
     @app.route("/viewdb")sf
@@ -97,7 +97,7 @@ Add the following to `flaskapp.py` and restart the server (`sudo apachectl resta
 
 ### 5. Add a query url request handler
 
-To allow for queries on state, add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at ``(your public DNS)/state/(field)` will return a list of all national parks in that state.
+To allow for queries on state, add the following to `flaskapp.py` and restart the server (`sudo apachectl restart`). Pointing a browser at `(your public DNS)/state/(field)` will return a list of all national parks in that state.
 
     :::python
     @app.route("/state/<state>")
@@ -110,7 +110,7 @@ To allow for queries on state, add the following to `flaskapp.py` and restart th
 
 ### 6. Note on cross site requests
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. [Running a Flask app on AWS EC2]({filename}/flask-on-ec2.md)
 1. **Using Flask to answer SQL queries**

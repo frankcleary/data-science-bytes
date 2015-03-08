@@ -3,7 +3,7 @@ Date: 2-24-2015
 Category: Tutorials
 Tags: python, AWS
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. **Running a Flask app on AWS EC2**
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
@@ -179,7 +179,7 @@ Restart the server and view the results:
 
 See [Part 2]({filename}/flask-sql.md) for a description of how to connect flask to a SQL database.
 
-##### Four Part series on creating a D3.js graph powered by Flask and SQL
+##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
 1. **Running a Flask app on AWS EC2**
 1. [Using Flask to answer SQL queries]({filename}/flask-sql.md)
