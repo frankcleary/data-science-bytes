@@ -234,7 +234,7 @@ Here is the code that generates the plot using D3.js.
 
 # Conclusion
 
-In this series of posts I've shown how to set up a Flask server on EC2, enable that server to respond to queries with data from a SQL database, populate that database with useful information and finally write a D3.js visualization using data provided by the Flask server.
+In this series of posts I've shown how to set up a Flask server on EC2, enable that server to respond to queries with data from a SQL database, populate that database with useful information, and write a D3.js visualization using data provided by the Flask server.
 
 ##### _Four Part series on creating a D3.js graph powered by Flask and SQL_
 
