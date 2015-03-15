@@ -1,5 +1,7 @@
 # Pelican plugin for blogging with IPython Notebooks
 
+## This code is from https://github.com/danielfrg/pelican-ipynb
+
 ## Requirements
 
 Python 2.7 and 3.4 are supported
