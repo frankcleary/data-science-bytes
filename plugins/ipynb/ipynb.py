@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 import os
 import json
 import logging
-
 import markdown
 
 try:
@@ -173,7 +172,6 @@ class MyHTMLParser(HTMLReader._HTMLParser):
 class IPythonNB(BaseReader):
     enabled = True
     file_extensions = ['ipynb']
-
     def read(self, filepath):
         metadata = {}
 
@@ -213,6 +211,11 @@ class IPythonNB(BaseReader):
             for i in soup.findAll("div", {"class" : "input"}):
                 if i.findChildren()[1].find(text='#ignore') is not None:
                     i.extract()
+            # remove extra newline that sometimes appears at the end of output
+            for output in soup.findAll("div", {"class" : "output_text"}):
+                child = output.findChildren()[0]
+                if child.string[-1] == '\n':
+                    child.string = child.string[:-1]
         else:
             soup = content
 
