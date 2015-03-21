@@ -19,6 +19,7 @@ STATIC_EXCLUDE_SOURCES = False
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
                 'extra/ipynb',
+                'extra/css',
                 'extra/bart-graph',
                 'extra/timeseries.txt',
                 'talks/',

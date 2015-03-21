@@ -12,12 +12,10 @@ except ImportError:
     # Py2.7
     from HTMLParser import HTMLParser
 
-from pelican import signals
-from pelican.readers import MarkdownReader, HTMLReader, BaseReader
-
-import IPython
 from IPython.config import Config
 from IPython.nbconvert.exporters import HTMLExporter
+from pelican import signals
+from pelican.readers import MarkdownReader, HTMLReader, BaseReader
 
 try:
     from IPython.nbconvert.filters.highlight import _pygment_highlight
@@ -54,63 +52,6 @@ def strip_tags(html):
     s = MLStripper()
     s.feed(html)
     return s.get_data()
-
-
-# Fix CSS
-
-CUSTOM_CSS = '''
-<style type="text/css">
-
-/* General text, input and output cells */
-div.cell {
-    border: none;
-}
-
-.inner_cell {
-    width: 100%
-}
-
-.text_cell .prompt {
-    display: none;
-}
-
-div.cell {
-    margin: 0;
-    padding: 0;
-}
-
-div.input_area {
-    border: none;
-    background: none;
-    margin-left: 6px;
-}
-
-div.output_subarea {
-    padding: 0;
-}
-
-pre.ipynb {
-    padding: 5px 5px 5px 10px;
-}
-
-/* DataFrame */
-table.dataframe {
-    font-family: Arial, sans-serif;
-    line-height: 20px;
-}
-
-
-table.dataframe th, td {
-  padding: 4px;
-  text-align: left;
-  vertical-align: middle;
-  border: 1px solid black;
-  border-color: black;
-}
-
-</style>
-'''
-
 
 def custom_highlighter(source, language='ipython', metadata=None):
     """
@@ -201,7 +142,7 @@ class IPythonNB(BaseReader):
         # Convert ipython notebook to html
         config = Config({'CSSHTMLHeaderTransformer': {'enabled': True,
                          'highlight_class': '.highlight-ipynb'}})
-        exporter = HTMLExporter(config=config, template_file='basic',
+        exporter = HTMLExporter(config=config, template_file='plugins/ipynb/templates/dsbytes_full',
                                 filters={'highlight2html': custom_highlighter})
 
         content, info = exporter.from_filename(filepath)
@@ -218,9 +159,8 @@ class IPythonNB(BaseReader):
                     child.string = child.string[:-1]
         else:
             soup = content
-
         # Process using Pelican HTMLReader
-        content = '<body>{0}</body>'.format(soup)  # So Pelican HTMLReader works
+        content = '{0}'.format(soup)  # So Pelican HTMLReader works
         parser = MyHTMLParser(self.settings, filename)
         parser.feed(content)
         parser.close()
@@ -228,20 +168,21 @@ class IPythonNB(BaseReader):
         summary = parser.summary
 
         metadata['summary'] = summary
-
         # Remove some CSS styles, so it doesn't break the themes.
         def filter_tags(style_text):
-            style_list = style_text.split('\n')
             exclude = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol', 'li',
-                       '.rendered_html', '@media', '.navbar', 'nav.navbar', '.navbar-text',
+                       '.rendered_html', '.navbar', 'nav.navbar', '.navbar-text',
                        'code', 'pre', 'div.text_cell_render']
+            style_text = style_text.replace('/*!', '\n/*!')
+            style_text = style_text.replace('*/', '*/\n')
+            style_list = style_text.split('\n')
+            style_list = [i for i in style_list if len(list(filter(i.startswith, '@media'))) == 0]
+            style_text = '\n'.join(style_list)
+            style_text = style_text.replace('}', '}\n')
+            style_list = style_text.split('\n')
             style_list = [i for i in style_list if len(list(filter(i.startswith, exclude))) == 0]
             ans = '\n'.join(style_list)
-            return '<style type=\"text/css\">{0}</style>'.format(ans)
-
-        css = '\n'.join(filter_tags(css) for css in info['inlining']['css'])
-        css = CUSTOM_CSS + css
-        body = css + body
+            return ans
 
         return body, metadata
 
