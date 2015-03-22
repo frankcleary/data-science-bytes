@@ -151,18 +151,18 @@ class IPythonNB(BaseReader):
         content, info = exporter.from_filename(filepath)
 
         print metadata['title']
-        soup = BeautifulSoup(content)
-        print soup.contains_replacement_characters
-        for i in soup.findAll("div", {"class": "input"}):
-            if i.findChildren()[1].find(text='#ignore') is not None:
-                i.extract()
-        # remove extra newline that sometimes appears at the end of output
-        for output in soup.findAll("div", {"class": "output_text"}):
-            child = output.findChildren()[0]
-            if child.string[-1] == '\n':
-                child.string = child.string[:-1]
-        content = '{0}'.format(soup)  # So Pelican HTMLReader works
-
+        # soup = BeautifulSoup(content)
+        # for i in soup.findAll("div", {"class": "input"}):
+        #     if i.findChildren()[1].find(text='#ignore') is not None:
+        #         i.extract()
+        # # remove extra newline that sometimes appears at the end of output
+        # for output in soup.findAll("div", {"class": "output_text"}):
+        #     child = output.findChildren()[0]
+        #     if child.string[-1] == '\n':
+        #         child.string = child.string[:-1]
+        # content = '{0}'.format(soup)  # So Pelican HTMLReader works
+        content = '<html><body>' + content + '</body></html>'
+        print content
         # Process using Pelican HTMLReader
         parser = MyHTMLParser(self.settings, filename)
         parser.feed(content)
