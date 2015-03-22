@@ -141,49 +141,35 @@ class IPythonNB(BaseReader):
 
         # Convert ipython notebook to html
         config = Config({'CSSHTMLHeaderTransformer': {'enabled': True,
-                         'highlight_class': '.highlight-ipynb'}})
-        exporter = HTMLExporter(config=config, template_file='plugins/ipynb/templates/dsbytes_full',
-                                filters={'highlight2html': custom_highlighter})
+                                                      'highlight_class': '.highlight-ipynb'}})
+        exporter = HTMLExporter(
+            config=config,
+            template_file='plugins/ipynb/templates/dsbytes_full',
+            filters={'highlight2html': custom_highlighter}
+        )
 
         content, info = exporter.from_filename(filepath)
 
-        if BeautifulSoup:
-            soup = BeautifulSoup(content)
-            for i in soup.findAll("div", {"class" : "input"}):
-                if i.findChildren()[1].find(text='#ignore') is not None:
-                    i.extract()
-            # remove extra newline that sometimes appears at the end of output
-            for output in soup.findAll("div", {"class" : "output_text"}):
-                child = output.findChildren()[0]
-                if child.string[-1] == '\n':
-                    child.string = child.string[:-1]
-        else:
-            soup = content
-        # Process using Pelican HTMLReader
+        print metadata['title']
+        soup = BeautifulSoup(content)
+        print soup.contains_replacement_characters
+        for i in soup.findAll("div", {"class": "input"}):
+            if i.findChildren()[1].find(text='#ignore') is not None:
+                i.extract()
+        # remove extra newline that sometimes appears at the end of output
+        for output in soup.findAll("div", {"class": "output_text"}):
+            child = output.findChildren()[0]
+            if child.string[-1] == '\n':
+                child.string = child.string[:-1]
         content = '{0}'.format(soup)  # So Pelican HTMLReader works
+
+        # Process using Pelican HTMLReader
         parser = MyHTMLParser(self.settings, filename)
         parser.feed(content)
         parser.close()
         body = parser.body
         summary = parser.summary
-
         metadata['summary'] = summary
-        # Remove some CSS styles, so it doesn't break the themes.
-        def filter_tags(style_text):
-            exclude = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol', 'li',
-                       '.rendered_html', '.navbar', 'nav.navbar', '.navbar-text',
-                       'code', 'pre', 'div.text_cell_render']
-            style_text = style_text.replace('/*!', '\n/*!')
-            style_text = style_text.replace('*/', '*/\n')
-            style_list = style_text.split('\n')
-            style_list = [i for i in style_list if len(list(filter(i.startswith, '@media'))) == 0]
-            style_text = '\n'.join(style_list)
-            style_text = style_text.replace('}', '}\n')
-            style_list = style_text.split('\n')
-            style_list = [i for i in style_list if len(list(filter(i.startswith, exclude))) == 0]
-            ans = '\n'.join(style_list)
-            return ans
-
         return body, metadata
 
 
