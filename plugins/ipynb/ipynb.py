@@ -150,7 +150,6 @@ class IPythonNB(BaseReader):
 
         content, info = exporter.from_filename(filepath)
 
-        print metadata['title']
         content = '<html><body>' + content + '</body></html>'
         # Process using Pelican HTMLReader
         parser = MyHTMLParser(self.settings, filename)
