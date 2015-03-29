@@ -1,3 +1,9 @@
 *idea/*
 *~
+content/.ipynb_checkpoints*
 fabfile.py
+cache/*
+output/*
+wip/*
+*.pyc
+*.idea
