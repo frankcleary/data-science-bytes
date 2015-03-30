@@ -10,6 +10,7 @@ THEME = 'themes/notmyidea'
 PATH = 'content'
 STATIC_PATHS = ['extra/favicon2.png',
                 'extra/images',
+		'extra/css',
                 'extra/ipynb',
                 'extra/bart-graph',
                 'extra/timeseries.txt',
