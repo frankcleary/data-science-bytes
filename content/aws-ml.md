@@ -1,5 +1,5 @@
 Title: First Look at AWS Machine Learning
-Date: 2015-04-12
+Date: 2015-04-20
 Category: Tutorials
 Tags: data, AWS, machine learning
 
