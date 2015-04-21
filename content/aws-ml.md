@@ -5,7 +5,7 @@ Tags: data, AWS, machine learning
 
 <style>img {display: block; border: 3px solid grey;}</style>
 
-Amazon Web Services recently announced [Amazon Machine Learning](http://aws.amazon.com/machine-learning/), promising to make large scale machine learning more accessible to non-experts. I was curious to try out this service so I fed it some weather data from Oakland International Airport to see how well and how easily it could predict the maximum temperature on a day given the weather during the last 7 days. I downloaded [this data]({filename}/data/oak-data.csv) from the National Climatic Data Center [(data documentation)](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt).
+Amazon Web Services recently announced [Amazon Machine Learning](http://aws.amazon.com/machine-learning/), promising to make large scale machine learning more accessible to non-experts. I was curious to try out this service so I fed it some weather data from Oakland International Airport to see how well and how easily it could predict the maximum temperature on a day given the weather during the last 7 days. I downloaded [this data](/data/oak-data.csv) from the National Climatic Data Center [(data documentation)](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt).
 
 For input into the machine learning model I transformed this data into a csv file where each row contains the readings from the previous week, as well as our target variable, the maximum temperature on that day (see Amazon's [data format specs](http://docs.aws.amazon.com/machine-learning/latest/dg/creating_datasources.html)). The code for this transformation is at the end of this article.
 
