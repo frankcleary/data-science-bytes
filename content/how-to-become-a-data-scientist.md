@@ -27,7 +27,7 @@ to work on other projects because I had a place to share them. My site now gets 
 
 ## Study books and videos to learn more about computer science and data science
 
-* Check out my [recommended books](http://www.datasciencebytes.com//pages/recommended-books.md) page for the best books I've read.
+* Check out my [recommended books](http://www.datasciencebytes.com/recommended-books) page for the best books I've read.
 
 * Many great talks from conferences and meetups are available for free online. Besides searching directly on [youtube](http://www.youtube.com), other sites like [pyvideo.org](http://www.pyvideo.org) have great video libraries. Take a look at my [recommened videos](http://www.datasciencebytes.com//pages/recommended-videos.md) for some of my favorites.
 
