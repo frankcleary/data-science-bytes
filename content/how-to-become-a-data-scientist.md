@@ -29,7 +29,7 @@ to work on other projects because I had a place to share them. My site now gets 
 
 * Check out my [recommended books](http://www.datasciencebytes.com/recommended-books) page for the best books I've read.
 
-* Many great talks from conferences and meetups are available for free online. Besides searching directly on [youtube](http://www.youtube.com), other sites like [pyvideo.org](http://www.pyvideo.org) have great video libraries. Take a look at my [recommened videos](http://www.datasciencebytes.com//pages/recommended-videos.md) for some of my favorites.
+* Many great talks from conferences and meetups are available for free online. Besides searching directly on [youtube](http://www.youtube.com), other sites like [pyvideo.org](http://www.pyvideo.org) have great video libraries. Take a look at my [recommened videos](http://www.datasciencebytes.com/recommended-videos) for some of my favorites.
 
 * Take a free online class. I took [Introduction to Databases](https://class.stanford.edu/courses/Home/Databases/Engineering/about) with Prof. Jennifer Widom and [Machine Learning](https://www.coursera.org/course/ml) with Prof. Andrew Ng. Both were engaging and cover essential knowledge for a data scientist that comes in handy when doing data science and when interviewing for data scientist jobs. Introduction to Databases was more polished and more rigorous.
 
