@@ -22,6 +22,7 @@ STATIC_PATHS = ['extra/favicon2.png',
                 'extra/css',
                 'extra/bart-graph',
                 'extra/timeseries.txt',
+                'extra/spark-getting-started',
                 'talks/',
                 'data/']
 EXTRA_PATH_METADATA = {
