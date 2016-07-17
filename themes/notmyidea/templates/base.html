@@ -38,6 +38,20 @@
                 {% endfor %}
                 <li><a href="{{ SITEURL }}/about">About</a></li>
                 </ul></nav>
+                <div id="google-custom-search">
+                  <script>
+                    (function() {
+                      var cx = '008965481993712105446:4wnh-lckeii';
+                      var gcse = document.createElement('script');
+                      gcse.type = 'text/javascript';
+                      gcse.async = true;
+                      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                      var s = document.getElementsByTagName('script')[0];
+                      s.parentNode.insertBefore(gcse, s);
+                    })();
+                  </script>
+                  <gcse:search></gcse:search>
+                </div>
         </header><!-- /#banner -->
         {% block content %}
         {% endblock %}

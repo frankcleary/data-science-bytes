@@ -136,6 +136,15 @@ div.note {
 
 /* Tables */
 table {margin: .5em auto 1.5em auto; width: 98%;}
+/* for google custom search bar */
+header table {
+  margin: 0px;
+  width: 100%;
+  line-height: 100%;
+}
+#google-custom-search {
+  height: 75px;
+}
 
 	/* Thead */
 	thead th {padding: .5em .4em; text-align: left;}
@@ -167,7 +176,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	Header
 *****************/
 #banner {
-	margin: 0 auto;
+	margin: 0 auto 2em auto;
 	padding: 2.5em 0 0 0;
 }
 
@@ -194,7 +203,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		font-size: 1.143em;
 		height: 40px;
 		line-height: 30px;
-		margin: 0 auto 2em auto;
+		margin: 0 auto auto auto;
 		padding: 0;
 		text-align: center;
 		width: 800px;

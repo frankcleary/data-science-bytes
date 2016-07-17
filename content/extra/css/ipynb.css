@@ -61,7 +61,7 @@ table.dataframe {
     line-height: 20px;
 }
 
-table.dataframe th, td {
+table.dataframe th, table.dataframe td {
   padding: 4px;
   text-align: left;
   vertical-align: middle;
