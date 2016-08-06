@@ -134,3 +134,13 @@ Your apache config should now have a block that looks like this:
 1. **Using Flask to answer SQL queries**
 1. [Getting csv data from requests to a SQL backed Flask app]({filename}/flask-bart-sql.md)
 1. [A D3.js plot powered by a SQL database]({filename}/flask-bart-graphing.md)
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- leaderboard1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-2699660117208583"
+     data-ad-slot="7561600958"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
