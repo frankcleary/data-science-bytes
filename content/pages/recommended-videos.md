@@ -17,6 +17,4 @@ Here are the best data science and python related videos that I've found.
 
 * [The Day of the EXE Is Upon Us](http://pyvideo.org/video/2636/the-day-of-the-exe-is-upon-us), Brandon Rhodes
 
-* [IPython in depth: high-productivity interactive and parallel python](http://ipython.org/videos.html#ipython-in-depth-high-productivity-interactive-and-parallel-python), Fernando Perez, Brian Granger and Min Ragan-Kelley. Great if you haven't used the amazing IPython notebook much!
-
 * [Python in Big Data with an overview of NumPy & SciPy](http://pyvideo.org/video/960/python-in-big-data-with-an-overview-of-numpy-sc), Travis Oliphant
