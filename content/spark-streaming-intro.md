@@ -5,6 +5,8 @@ Tags: Spark, Java
 
 [Spark Streaming](http://spark.apache.org/docs/latest/streaming-programming-guide.html) uses the power of Spark on streams of data, often data generated in real time by many producers. A typical use case is analysis on a streaming source of events such as website clicks or ad impressions. In this tutorial I'll create a Spark Streaming application that analyzes fake events streamed from another process. If you're new to running Spark take a look at the [_Getting Started With Spark_]({filename}/spark-getting-started.md) tutorial to get yourself up and running. The code used in this tutorial is [available on github](https://github.com/frankcleary/spark-streaming-intro).
 
+**Note: The code below is written against Spark 1.6 and may need changes to run against Spark 2.0**
+
 ### The streaming data source
 
 Spark Streaming can read input from many sources, most are designed to consume the input data and buffer it for consumption by the streaming application ([Apache Kafka](http://kafka.apache.org/) and [Amazon Kinesis](https://aws.amazon.com/kinesis/) fall into this category). For this tutorial we'll feed data to Spark from a TCP socket written to by a process running locally.
