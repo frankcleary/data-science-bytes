@@ -3,7 +3,7 @@ Date: 11-8-2014
 Category: Tips
 Tags: data, python, matplotlib, code
 
-[Download IPython notebook for this post](http://www.datasciencebytes.com/extra/ipynb/axeslabeltip.ipynb).
+[Download IPython notebook for this post](https://www.datasciencebytes.com/extra/ipynb/axeslabeltip.ipynb).
 
 It's easy enough to make a plot using matplotlib. 
 
@@ -16,7 +16,7 @@ It's easy enough to make a plot using matplotlib.
      
     plt.plot(time_point_array, y_value_array)
 
-![basic matplotlib plot](http://www.datasciencebytes.com/extra/images/axeslabelbase.png)
+![basic matplotlib plot](https://www.datasciencebytes.com/extra/images/axeslabelbase.png)
 
 This plot is not great data science. In fact it's poor data science and it happens all too often. By far the biggest problem is the lack of axis labels, no one (including yourself next week) is going to be able to get any information out of this plot without proper axis labels.
 
@@ -31,8 +31,8 @@ With just a few extra lines this plot can be made presentable. Note that it's ea
     plt.xlabel("Time (min after launch)", label_format_dict)
     plt.tick_params(**tick_format_dict)
 
-![fixed matplotlib plot](http://www.datasciencebytes.com/extra/images/axeslabelfixed.png)
+![fixed matplotlib plot](https://www.datasciencebytes.com/extra/images/axeslabelfixed.png)
 
 Note how much more readable and presentable the second graph is. It's not going to win any design awards but it could be put in an informal presentation as is. Some of these settings can also be configured in the [matplotlibrc file](http://matplotlib.org/users/customizing.html#customizing-matplotlib), or via [IPython configs](http://ipython.org/ipython-doc/dev/config/intro.html) but for portability and reproducibility I'd recommend getting them under version control along with the code that produces the plots.
 
-[Download IPython notebook for this post](http://www.datasciencebytes.com/extra/ipynb/axeslabeltip.ipynb)
+[Download IPython notebook for this post](https://www.datasciencebytes.com/extra/ipynb/axeslabeltip.ipynb)
