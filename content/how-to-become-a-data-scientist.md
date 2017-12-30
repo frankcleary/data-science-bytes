@@ -18,12 +18,12 @@ It was at this time that I decided data science was where I would focus my futur
 
 ## Establish a data science portfolio
 
-* Have a personal website (e.g. [frankcleary.com](http://www.frankcleary.com)).
+* Have a personal website (e.g. [frankcleary.com](https://www.frankcleary.com)).
 I learned a lot about the internet and using remote linux machines by
 building my personal website. It also helped give me motivation
 to work on other projects because I had a place to share them. My site now gets 10-20 users per day from searches, mostly landing on pages where I've posted tutorials.
 
-* Do data related projects in your spare time (and then post them on your website!). I've worked on a variety of fun side projects ranging from [interactive D3.js graphs](http://www.frankcleary.com/mpg) to [tutorials on matrix decomposition](http://www.frankcleary.com/svd) that made be a better programmer and a better data scientist. Having these projects on your website also gives you a portfolio that will help you stand out by showing commitment to learning and (hopefully) skill.
+* Do data related projects in your spare time (and then post them on your website!). I've worked on a variety of fun side projects ranging from [interactive D3.js graphs](https://www.frankcleary.com/mpg) to [tutorials on matrix decomposition](https://www.frankcleary.com/svd) that made be a better programmer and a better data scientist. Having these projects on your website also gives you a portfolio that will help you stand out by showing commitment to learning and (hopefully) skill.
 
 ## Study books and videos to learn more about computer science and data science
 
