@@ -18,7 +18,7 @@ The end result is shown below - play around with the selection boxes to see the 
 
 # End result
 
-<iframe src="http://aws.datasciencebytes.com/bartdb/static/graph.html" width="700px" height="600px"></iframe>
+<iframe src="https://aws.datasciencebytes.com/bartdb/static/graph.html" width="700px" height="600px"></iframe>
 
 # Javascript source
 
@@ -26,7 +26,7 @@ Here is the code that generates the plot using D3.js.
 
     :::js
     // The base endpoint to receive data from. See update_url()
-    var URL_BASE = "http://aws.datasciencebytes.com/bartdb";
+    var URL_BASE = "https://aws.datasciencebytes.com/bartdb";
 
     // Update graph in response to inputs
     d3.select("#dest").on("input", make_graph);
