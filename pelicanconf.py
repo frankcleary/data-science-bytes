@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Frank Cleary'
 SITENAME = u'Data Science Bytes'
-SITEURL = 'https://www.datasciencebytes.com'
+SITEURL = 'localhost:8000'
 THEME = 'themes/notmyidea'
 
 READERS = {'html': None}

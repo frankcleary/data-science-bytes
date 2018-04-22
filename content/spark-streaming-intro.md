@@ -5,7 +5,7 @@ Tags: Spark, Java
 
 [Spark Streaming](http://spark.apache.org/docs/latest/streaming-programming-guide.html) uses the power of Spark on streams of data, often data generated in real time by many producers. A typical use case is analysis on a streaming source of events such as website clicks or ad impressions. In this tutorial I'll create a Spark Streaming application that analyzes fake events streamed from another process. If you're new to running Spark take a look at the [_Getting Started With Spark_]({filename}/spark-getting-started.md) tutorial to get yourself up and running. The code used in this tutorial is [available on github](https://github.com/frankcleary/spark-streaming-intro).
 
-**Note: The code below is written against Spark 1.6 and may need changes to run against Spark 2.0**
+**Update: The code below has been updated to work with Spark 2.3. For the Spark 1.6 version see [here](https://github.com/frankcleary/spark-streaming-intro/tree/spark1.6.1/java/src/main/java).**
 
 ### The streaming data source
 
@@ -79,7 +79,7 @@ Here is a "hello world" Spark Streaming application. It connects to the server r
     import org.apache.spark.streaming.Durations;
     import org.apache.spark.streaming.api.java.*;
 
-    public class VerySimpleStreamingApp {
+    public class VerySimpleStreamingApp throws InterruptedException {
         private static final String HOST = "localhost";
         private static final int PORT = 9999;
 
@@ -109,11 +109,9 @@ Moving on to a more complicated application we'll collect aggregate results from
 The Spark application below parses each event into a (userName, eventType) pair, then aggregates all the events over the life of the stream into per-user data. This is done through the [`updateStateByKey()`](http://spark.apache.org/docs/latest/streaming-programming-guide.html#updatestatebykey-operation) method of Sprak Streaming's [PairDStream](https://spark.apache.org/docs/latest/api/java/org/apache/spark/streaming/api/java/JavaPairDStream.html). Here we just print the output, in production calls to [`foreachRDD()`](http://spark.apache.org/docs/latest/streaming-programming-guide.html#output-operations-on-dstreams) would likely persist the data to a database or otherwise do something useful.
 
     :::java
-    import com.google.common.base.Optional;
     import org.apache.log4j.*;
     import org.apache.spark.SparkConf;
-    import org.apache.spark.api.java.JavaPairRDD;
-    import org.apache.spark.api.java.function.*;
+    import org.apache.spark.api.java.Optional;
     import org.apache.spark.streaming.*;
     import org.apache.spark.streaming.api.java.*;
     import scala.Tuple2;
@@ -126,7 +124,7 @@ The Spark application below parses each event into a (userName, eventType) pair,
         private static final String CHECKPOINT_DIR = "/tmp";
         private static final Duration BATCH_DURATION = Durations.seconds(5);
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws InterruptedException {
             // Configure and initialize the SparkStreamingContext
             SparkConf conf = new SparkConf()
                     .setMaster("local[*]")
@@ -140,76 +138,54 @@ The Spark application below parses each event into a (userName, eventType) pair,
             JavaReceiverInputDStream<String> lines = streamingContext.socketTextStream(HOST, PORT);
 
             // Map lines of input data (user:event) into (user, event) pairs
-            JavaPairDStream<String, String> events = lines.mapToPair(
-                    new PairFunction<String, String, String>() {
-                        @Override
-                        public Tuple2<String, String> call(String rawEvent) throws Exception {
-                            String[] strings = rawEvent.split(":");
-                            return new Tuple2<>(strings[0], strings[1]);
-                        }
+            JavaPairDStream<String, String> events = lines.mapToPair(rawEvent -> {
+                        String[] strings = rawEvent.split(":");
+                        return new Tuple2<>(strings[0], strings[1]);
                     }
             );
 
             // Print new events received in this batch
-            events.foreachRDD(
-                    new Function2<JavaPairRDD<String, String>, Time, Void>() {
-                        @Override
-                        public Void call(JavaPairRDD<String, String> newEventsRdd, Time time)
-                                throws Exception {
-                                System.out.println("\n===================================");
-                                System.out.println("New Events for " + time + " batch:");
-                                for (Tuple2<String, String> tuple : newEventsRdd.collect()) {
-                                    System.out.println(tuple._1 + ": " + tuple._2);
-                                }
-                                return null;
-                            }
-                        });
+            events.foreachRDD((newEventsRdd, time) -> {
+                System.out.println("\n===================================");
+                System.out.println("New Events for " + time + " batch:");
+                for (Tuple2<String, String> tuple : newEventsRdd.collect()) {
+                    System.out.println(tuple._1 + ": " + tuple._2);
+                }
+            });
 
             // Combine new events with a running total of events for each user.
             // userTotals holds pairs of (user, map of event to number of occurrences
             // of that event for that user)
-            JavaPairDStream<String, Map<String, Long>> userTotals =
-                    events.updateStateByKey(
-                            new Function2<List<String>, Optional<Map<String, Long>>,
-                                    Optional<Map<String, Long>>>() {
-                        @Override
-                        public Optional<Map<String, Long>> call(List<String> newEvents,
-                            Optional<Map<String, Long>> oldEvents) throws Exception {
-                            Map<String, Long> updateMap = oldEvents.or(new HashMap<>());
-                            for (String event : newEvents) {
-                                if (updateMap.containsKey(event)) {
-                                    updateMap.put(event, updateMap.get(event) + 1L);
-                                } else {
-                                    updateMap.put(event, 1L);
-                                }
+            JavaPairDStream<String, Map<String, Long>> userTotals = events.updateStateByKey(
+                    (newEvents, oldEvents) -> {
+                        Map<String, Long> updateMap = oldEvents.or(new HashMap<>());
+                        for (String event : newEvents) {
+                            if (updateMap.containsKey(event)) {
+                                updateMap.put(event, updateMap.get(event) + 1L);
+                            } else {
+                                updateMap.put(event, 1L);
                             }
-                            return Optional.of(updateMap);
                         }
+                        return Optional.of(updateMap);
                     });
 
-            userTotals.foreachRDD(
-                    new Function2<JavaPairRDD<String, Map<String, Long>>, Time, Void>() {
-                        @Override
-                        public Void call(JavaPairRDD<String, Map<String, Long>> userTotals,
-                                         Time time) throws Exception {
-                            // Instead of printing this would be a good place to do
-                            // something like writing the aggregation to a database
-                            System.out.println("");
-                            System.out.println("Per user aggregate events at " + time + ":");
-                            // Consider rdd.foreach() instead of collectAsMap()
-                            for (Map.Entry<String, Map<String, Long>> userData :
-                                    userTotals.collectAsMap().entrySet()) {
-                                System.out.println(String.format("%s: %s",
-                                        userData.getKey(), userData.getValue()));
-                            }
-                            return null;
-                        }
-                    });
+            userTotals.foreachRDD((userTotals1, time) -> {
+                // Instead of printing this would be a good place to do
+                // something like writing the aggregation to a database
+                System.out.println("");
+                System.out.println("Per user aggregate events at " + time + ":");
+                // Consider rdd.foreach() instead of collectAsMap()
+                for (Map.Entry<String, Map<String, Long>> userData :
+                        userTotals1.collectAsMap().entrySet()) {
+                    System.out.println(String.format("%s: %s",
+                            userData.getKey(), userData.getValue()));
+                }
+            });
 
             streamingContext.start();
             streamingContext.awaitTermination();
         }
-    }
+     }
 
 ### Adding more analysis
 
@@ -217,26 +193,12 @@ If you're interested in aggregating the data across all users, adding the follow
 
     :::java
     // siteTotals holds the total number of each event that has occurred across all users.
-    JavaPairDStream<String, Long> siteTotals = userTotals.flatMapToPair(
-            new PairFlatMapFunction<Tuple2<String, Map<String, Long>>, String, Long>() {
-                @Override
-                public Iterable<Tuple2<String, Long>> call(Tuple2<String,
-                        Map<String, Long>> userEvents) throws Exception {
-                    List<Tuple2<String, Long>> eventCounts = new ArrayList<>();
-                    for (Map.Entry<String, Long> entry : userEvents._2.entrySet()) {
-                        eventCounts.add(new Tuple2<>(entry.getKey(), entry.getValue()));
-                    }
-                    return eventCounts;
-                }
-            }
-    ).reduceByKey(
-            new Function2<Long, Long, Long>() {
-                @Override
-                public Long call(Long left, Long right) throws Exception {
-                    return left + right;
-                }
-            }
-    );
+    JavaPairDStream<String, Long> siteTotals = userTotals
+            .flatMapToPair(userEvents ->
+                    userEvents._2.entrySet().stream()
+                            .map(entry -> new Tuple2<>(entry.getKey(), entry.getValue()))
+                            .iterator())
+            .reduceByKey((left, right) -> left + right);
     siteTotals.print();
 
 ### Conclusion
